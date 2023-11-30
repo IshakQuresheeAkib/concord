@@ -15,8 +15,7 @@ export default {
       'primary':'#008080'
     },
     fontFamily:{
-      sirin:['Sirin Stencil', 'sans-serif'],
-      ubuntu:['Ubuntu', 'sans-serif']
+      Nunito:['Nunito','sans-serif']
     },
     extend: {},
   },

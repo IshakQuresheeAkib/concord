@@ -5,8 +5,8 @@
     padding: 0;
     margin: 0;
     font-family: "Raleway", sans-serif;
-    font-weight: 600;
-    font-size: 40px;
+    font-weight: 700;
+    font-size: 45px;
     color: black;
     transition: all 0.4s ease 0s;
   }
@@ -26,7 +26,7 @@
     text-align: center;
     padding-bottom: 5px;
     color:teal;
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'Nunito', sans-serif;
   }
   .one .h1:before {
     width: 28px;

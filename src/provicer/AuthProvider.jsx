@@ -48,13 +48,13 @@ const AuthProvider = ({children}) => {
             console.log(currentUser);
             setUser(currentUser)
             if (currentUser) {
-                axios.post('http://localhost:5000/jwt',loggedUser,{ withCredentials:true })
+                axios.post('https://assignment-12-server-delta-ruddy.vercel.app/jwt',loggedUser,{ withCredentials:true })
                 .then(()=>{
                     setLoading(false)
                 })
             }
             else{
-                axios.post('http://localhost:5000/logout',loggedUser,{withCredentials:true})
+                axios.post('https://assignment-12-server-delta-ruddy.vercel.app/logout',loggedUser,{withCredentials:true})
                 .then(result=>{
                     setLoading(false)
                     console.log(result.data)

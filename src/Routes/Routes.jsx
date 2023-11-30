@@ -5,7 +5,6 @@ import Faq from "../Pages/Shared/Faq/Faq";
 import ContactUs from "../Pages/Shared/ContactUs/ContactUs";
 import Login from "../Pages/Login/Login";
 import Signup from "../Pages/Signup/Signup";
-import AddProducts from "../Pages/AddProducts/AddProducts";
 import Biodatas from "../Pages/Biodatas/Biodatas";
 import AboutUs from "../Pages/AboutUs/AboutUs";
 import Dashboard from "../Pages/Dashboard/Dashboard/Dashboard";
@@ -18,8 +17,9 @@ import AdminDashboard from "../Pages/Dashboard/Admin/AdminDashboard/AdminDashboa
 import ManageUsers from "../Pages/Dashboard/Admin/ManageUsers/ManageUsers";
 import ApprovedPremium from "../Pages/Dashboard/Admin/ApprovedPremium/ApprovedPremium";
 import ApprovedContactReq from "../Pages/Dashboard/Admin/ApprovedContactReq/ApprovedContactReq";
-import DashboardHome from "../Pages/Dashboard/DashboardHome/DashboardHome";
 import AdminRoute from "./AdminRoute";
+import BiodataDetails from "../Pages/BiodataDetails/BiodataDetails";
+import Checkout from "../Pages/Checkout/Checkout";
   
 export  const router = createBrowserRouter([
     {
@@ -44,17 +44,21 @@ export  const router = createBrowserRouter([
           element:<Signup></Signup>
         },
         {
-          path:'/add-products',
-          element:<AddProducts></AddProducts>
-        },
-        {
-          path:'/Biodatas',
+          path:'/biodatas',
           element:<Biodatas></Biodatas>
         },
         {
           path:'/about-us',
           element:<AboutUs></AboutUs>
         },
+        {
+          path:'/biodata-details/:id',
+          element:<PrivateRoutes><BiodataDetails></BiodataDetails></PrivateRoutes>
+        },
+        {
+          path:'/checkout/:id',
+          element:<PrivateRoutes><Checkout></Checkout></PrivateRoutes>
+        }
       ]
     },
     {
@@ -63,15 +67,11 @@ export  const router = createBrowserRouter([
       children:[
         // users route
         {
-          path:'/dashboard',
-          element:<DashboardHome></DashboardHome>
-        },
-        {
           path:'/dashboard/edit',
           element:<EditBiodata></EditBiodata>
         },
         {
-          path:'/dashboard/view-biodata',
+          path:'/dashboard/view-biodata/:id',
           element:<ViewBiodata></ViewBiodata>
         },
         {

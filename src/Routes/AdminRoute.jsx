@@ -5,18 +5,18 @@ import { enqueueSnackbar } from "notistack";
 import useAdmin from "../hook/useAdmin";
 
 const AdminRoute = ({children}) => {
-    const {loading} = useAuth();
+    const {user,loading} = useAuth();
     const [isAdmin,isPending] = useAdmin();
           
     if (loading || isPending) {
         return <Loader></Loader>       
     }
 
-    if (!isAdmin) {
-        enqueueSnackbar('Unauthorized Access!',{variant:'error'})
-        return <Navigate to='/'></Navigate>
+    if (isAdmin && user) {
+        return children;      
     }
-
-    return children;
+    enqueueSnackbar('Unauthorized Access!',{variant:'error'})
+    return <Navigate to='/'></Navigate>
+    
 }
 export default AdminRoute;

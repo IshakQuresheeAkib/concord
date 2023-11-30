@@ -8,10 +8,10 @@ import Loader from '../Components/Loader/Loader'
 const Main = () => {
 
     const {pathname} = useLocation();
-    const {loading} = useAuth();
+    const { loading } = useAuth();
 
     return (
-        <div className="overflow-hidden font-ubuntu min-h-screen">
+        <div className="overflow-hidden font-Nunito min-h-screen">
              <div>
                     {pathname === '/' ? <Home></Home> : <Navbar></Navbar>}
                 </div> 

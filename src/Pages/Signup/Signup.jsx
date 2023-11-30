@@ -2,14 +2,13 @@ import { Link, useNavigate } from "react-router-dom";
 import { MdOutlineAlternateEmail } from 'react-icons/md';
 import { CgProfile } from 'react-icons/cg';
 import { BsImageAlt } from 'react-icons/bs';
-import { RiLoginCircleFill } from 'react-icons/ri';
 import { AiOutlineEye } from 'react-icons/ai';
 import Heading from '../../Components/Heading/Heading'
-import PrimaryBtn from '../../Components/Button/PrimaryBtn'
 import { enqueueSnackbar } from "notistack";
 import useAuth from '../../hook/useAuth'
 import { FcGoogle } from 'react-icons/fc';
 import useAxiosPublic from "../../hook/useAxiosPublic";
+import { Input } from "antd";
 
 
 const Signup = () => {
@@ -29,13 +28,13 @@ const Signup = () => {
         console.log(newUser);
 
 
-        // if (!/(?=.*[!#$%&?^*@~() "])/.test(password)) {
-        //     return enqueueSnackbar('Password should have a special character!',{variant:'error'})
-        // }else if (!/[A-Z]/.test(password)) {
-        //     return enqueueSnackbar('Password should have a capital letter !',{variant:'error'})
-        // }else if(!/(?=.{8,})/.test(password)){
-        //     return enqueueSnackbar('Password should have minimum six character !',{variant:'error'})
-        // }
+        if (!/(?=.*[!#$%&?^*@~() "])/.test(password)) {
+            return enqueueSnackbar('Password should have a special character!',{variant:'error'})
+        }else if (!/[A-Z]/.test(password)) {
+            return enqueueSnackbar('Password should have a capital letter !',{variant:'error'})
+        }else if(!/(?=.{8,})/.test(password)){
+            return enqueueSnackbar('Password should have minimum six character !',{variant:'error'})
+        }
 
         createUser(email,password)
         .then(()=>{
@@ -104,29 +103,25 @@ const Signup = () => {
                     <form onSubmit={handleRegister}>
                         <div className="relative mt-10">
                         <input name='name' className="w-full bg-gray text-gray-900 p-3 rounded-lg focus:outline-none focus:shadow-outline"
-                    type="text" placeholder="Name" />
+                    type="text" placeholder="Name" required/>
                     <CgProfile className="absolute right-3 bottom-4"></CgProfile>
                         </div>
                         <div className="relative my-5">
                         <input name='image' className="w-full bg-gray text-gray-900 p-3 rounded-lg focus:outline-none focus:shadow-outline"
-                    type="text" placeholder="Image URL" />
+                    type="text" placeholder="Image URL" required/>
                     <BsImageAlt className="absolute right-3 bottom-4"></BsImageAlt>
                         </div>
                         <div className="relative">
                         <input name='email' className="w-full bg-gray text-gray-900 p-3 rounded-lg focus:outline-none focus:shadow-outline"
-                    type="text" placeholder="Email" />
+                    type="text" placeholder="Email" required/>
                     <MdOutlineAlternateEmail className="absolute right-3 bottom-4"></MdOutlineAlternateEmail>
                         </div>
                         <div className="relative my-5">
                         <input name='password' className="w-full bg-gray text-gray-900 p-3 rounded-lg focus:outline-none focus:shadow-outline "
-                    type="text" placeholder="Password" />
+                    type="text" placeholder="Password" required />
                     <AiOutlineEye className="absolute right-3 bottom-3"></AiOutlineEye>
                         </div>
-                        <button className="relative w-40 mt-5" type='submit'>
-                        <PrimaryBtn data='Register'>
-                        </PrimaryBtn>
-                        <RiLoginCircleFill className="absolute w-full left-10 bottom-3.5" ></RiLoginCircleFill>
-                        </button>
+                        <Input type="submit" className="bg-light-teal text-xl py-3 border-none mt-5 cursor-pointer" value='Register'></Input>
                     </form>
                         
                         <p className="mt-5 text-sm font-light">Already have an Account? Please <Link to='/login' className="underline underline-offset-4 text-teal">Log in!</Link></p>

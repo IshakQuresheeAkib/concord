@@ -1,13 +1,12 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FcGoogle } from 'react-icons/fc';
 import { MdOutlineAlternateEmail } from 'react-icons/md';
-import { RiLoginCircleFill } from 'react-icons/ri';
 import { AiOutlineEye } from 'react-icons/ai';
 import Heading from '../../Components/Heading/Heading'
-import PrimaryBtn from '../../Components/Button/PrimaryBtn'
 import useAuth from "../../hook/useAuth";
 import { enqueueSnackbar } from "notistack";
 import useAxiosPublic from "../../hook/useAxiosPublic";
+import { Input } from "antd";
 
 const Login = () => {
 
@@ -81,11 +80,8 @@ const Login = () => {
                         type="text" name='password' placeholder="Password" required/>
                         <AiOutlineEye className="absolute right-3 bottom-3 text-xl"></AiOutlineEye>
                             </div>
-                            <button className="relative" type="submit">
-                            <PrimaryBtn data='Log in'>
-                            </PrimaryBtn>
-                            <RiLoginCircleFill className="absolute w-full left-7 bottom-3.5" ></RiLoginCircleFill>
-                            </button>
+                            <Input type="submit" className="bg-light-teal text-xl py-3 border-none cursor-pointer" value='Log In'></Input>
+
                         </form>
                         <p className="mt-5 text-sm font-light">{`Don't have Account? Please `}<Link to='/signup' className="underline underline-offset-4 text-teal">Sign up!</Link></p>
                     </div>

@@ -1,13 +1,13 @@
-import { Button } from 'antd';
 import concord from '../../../assets/concord.png'
 import { SendOutlined } from '@ant-design/icons';
+import PrimaryBtn from '../../../Components/Button/PrimaryBtn';
+import { Link } from 'react-router-dom';
 
  
 const Footer = () => {
     return (
-        <div className="relative bg-teal ">
-            <svg
-            className="absolute top-0 w-full h-6 -mt-5 sm:-mt-10 sm:h-16 text-teal"
+        <div className="relative bg-teal mt-40">
+            <svg className="absolute top-0 w-full h-6  -mt-5 sm:-mt-10 sm:h-16 text-teal"
             preserveAspectRatio="none"
             viewBox="0 0 1440 54"
             >
@@ -16,166 +16,33 @@ const Footer = () => {
                 d="M0 22L120 16.7C240 11 480 1.00001 720 0.700012C960 1.00001 1200 11 1320 16.7L1440 22V54H1320C1200 54 960 54 720 54C480 54 240 54 120 54H0V22Z"
             />
             </svg>
-            <div className="px-4 pt-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-10 text-white">
-                <div className="grid gap-16 row-gap-10 mb-8 lg:grid-cols-6 className=">
-                    <div className="md:max-w-md lg:col-span-3">
-                    <img src={concord} alt="" className="w-52 mt-2"/>
-                        <div className="mt-4 lg:max-w-sm">
-                            <p className="text-xs mb-4">
-                            Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                            accusantium doloremque laudantium, totam rem aperiam.
-                            </p>
+            <div className="px-4 pt-5  mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-10 text-white">
+                <div className="grid gap-10 row-gap-10 mb-8 lg:grid-cols-6">
+                    <div className="md:max-w-lg lg:col-span-3">
+                    <img src={concord} alt="" className="w-52 mt-2 -ml-10"/>
+                        <div className="mt-4 ">
+                            <p className="text-xs mb-4">Join Concord today and explore the beauty of relationships as you navigate through a space that celebrates the simplicity and warmth of genuine connections.</p>
                             <strong>Subscribe for Updates</strong>
-                            <form className="flex flex-col  items-center mt-1 md:flex-row text-black">
-                                <input
-                                    placeholder="Email"
-                                    required
-                                    type="text"
-                                    className="flex-grow w-full px-4 py-2 mb-3 transition duration-200 bg-white border border-gray-300 rounded shadow-sm appearance-none md:mr-2 md:mb-0 focus:border-deep-purple-accent-400 focus:outline-none focus:shadow-outline"
-                                />
-                                <Button type="" className="bg-white font-medium flex justify-center items-center py-5 hover:bg-light-teal hover:text-white border-none" icon={<SendOutlined />}>Submit</Button>
+                            <form className="flex flex-col gap-4 items-center mt-1 md:flex-row text-black">
+                            <input className="w-3/4 bg-gray text-black/80 p-2.5 rounded-lg focus:outline-none focus:shadow-outline " type="text" placeholder="Email" />
+                               <PrimaryBtn data={'Subscribe'} icon={<SendOutlined />}></PrimaryBtn>
                             </form>
                         </div>
                     </div>
-                    <div className="grid grid-cols-2 gap-5 row-gap-8 lg:col-span-3 md:grid-cols-4">
-                        <div>
-                            <p className="font-semibold tracking-wide text-teal-accent-400">
-                            Cherry
-                            </p>
-                            <ul className="mt-2 space-y-2">
-                            <li>
-                                <a
-                                href="/"
-                                className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
-                                >
-                                Web
-                                </a>
-                            </li>
-                            <li>
-                                <a
-                                href="/"
-                                className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
-                                >
-                                eCommerce
-                                </a>
-                            </li>
-                            <li>
-                                <a
-                                href="/"
-                                className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
-                                >
-                                Business
-                                </a>
-                            </li>
-                            <li>
-                                <a
-                                href="/"
-                                className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
-                                >
-                                Entertainment
-                                </a>
-                            </li>
-                            <li>
-                                <a
-                                href="/"
-                                className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
-                                >
-                                Portfolio
-                                </a>
-                            </li>
-                            </ul>
-                        </div>
-                    <div>
-                        <p className="font-semibold tracking-wide text-teal-accent-400">
-                        Apples
-                        </p>
-                        <ul className="mt-2 space-y-2">
-                        <li>
-                            <a
-                            href="/"
-                            className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
-                            >
-                            Media
-                            </a>
-                        </li>
-                        <li>
-                            <a
-                            href="/"
-                            className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
-                            >
-                            Brochure
-                            </a>
-                        </li>
-                        <li>
-                            <a
-                            href="/"
-                            className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
-                            >
-                            Nonprofit
-                            </a>
-                        </li>
-                        <li>
-                            <a
-                            href="/"
-                            className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
-                            >
-                            Educational
-                            </a>
-                        </li>
-                        <li>
-                            <a
-                            href="/"
-                            className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
-                            >
-                            Projects
-                            </a>
-                        </li>
-                        </ul>
-                    </div>
-                    <div>
-                        <p className="font-semibold tracking-wide text-teal-accent-400">
-                        Business
-                        </p>
-                        <ul className="mt-2 space-y-2">
-                        <li>
-                            <a
-                            href="/"
-                            className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
-                            >
-                            Infopreneur
-                            </a>
-                        </li>
-                        <li>
-                            <a
-                            href="/"
-                            className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
-                            >
-                            Personal
-                            </a>
-                        </li>
-                        <li>
-                            <a
-                            href="/"
-                            className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
-                            >
-                            Wiki
-                            </a>
-                        </li>
-                        <li>
-                            <a
-                            href="/"
-                            className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
-                            >
-                            Forum
-                            </a>
-                        </li>
-                        </ul>
-                    </div>
+                    <div className="grid grid-cols-2 gap-5 row-gap-8 lg:col-span-3 md:grid-cols-4 items-center">
+                        
+                        <div className='flex flex-col gap-5 mt-6 text-white/80'>
+                            <h2 className='font-bold text-white'>Explore</h2>
+                            <Link to='/' className=''>Home</Link>    
+                            <Link to='/biodatas' className=''>Biodatas</Link>    
+                            <Link to='/contact-us' className=''>Contact Us</Link>    
+                            <Link to='/about-us' className=''>About Us</Link>    
+                        </div>               
                     </div>
                 </div>
                 <div className="flex flex-col justify-between pt-5 pb-10 border-t border-deep-purple-accent-200 sm:flex-row">
                     <p className="text-sm text-gray-100">
-                    © Copyright 2020 Lorem Inc. All rights reserved.
+                    © Copyright 2020 Concord Ltd. All rights reserved.
                     </p>
                     <div className="flex items-center mt-4 space-x-4 sm:mt-0">
                     <a
