@@ -1,6 +1,6 @@
 # [Concord](https://assignment-12-847d7.web.app "Concord Client side") 
 
-## Awesome Features
+## Our Features
 
 - **User-friendly Interface:** Our platform boasts an intuitive and easy-to-navigate interface, ensuring a seamless experience for users.
 
