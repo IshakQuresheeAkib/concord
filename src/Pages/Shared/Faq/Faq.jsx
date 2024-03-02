@@ -46,9 +46,9 @@ import Heading from '../../../Components/Heading/Heading'
   };
 
     return (
-        <div className='flex flex-col justify-center items-center gap-10 px-10 mt-20 max-w-7xl mx-auto'>
-            <div className='lg:w-1/2 mx-auto'>
-                <img src="https://i.ibb.co/w7jTgcP/7879-1.jpg" alt="" className="lg:h-72 mx-auto mb-10"/>
+        <div className='flex flex-col justify-center items-center gap-10 px-10 mt-36 max-w-6xl mx-auto' data-aos='fade-up'>
+            <div className='2xl:w-1/2 mx-auto'>
+                <img loading="lazy" src="https://i.ibb.co/w7jTgcP/7879-1.jpg" alt="" className="sm:h-64 mx-auto mb-10"/>
                 <Heading>Frequently Asked Questions</Heading>
                 <p className='my-4 text-center'>Here are answers to some common questions that might help you better understand how we work and how you can get involved.</p>
             </div>

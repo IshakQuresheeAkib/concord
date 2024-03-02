@@ -5,7 +5,8 @@ import { SnackbarProvider  } from "notistack";
 import { HelmetProvider } from "react-helmet-async";
 import axios from "axios";
 import {QueryClient, QueryClientProvider } from "@tanstack/react-query";
-
+import 'aos/dist/aos.css';
+import Aos from "aos";
 
 export const AuthContext = createContext(null)
 const googleProvider = new GoogleAuthProvider();
@@ -14,6 +15,15 @@ const helmetContext = {};
 const queryClient = new QueryClient()
 
 const AuthProvider = ({children}) => {
+
+    Aos.init({
+        offset: 200,
+        duration: 600,
+        easing: 'ease-in-sine',
+        delay: 50,
+      });
+    
+      useEffect(()=>Aos.refresh(),[])
 
     const [loading,setLoading] = useState(true)
     const [user,setUser] = useState(null)
@@ -48,13 +58,13 @@ const AuthProvider = ({children}) => {
             console.log(currentUser);
             setUser(currentUser)
             if (currentUser) {
-                axios.post('https://assignment-12-server-delta-ruddy.vercel.app/jwt',loggedUser,{ withCredentials:true })
+                axios.post('https://concord-server.vercel.app/jwt',loggedUser,{ withCredentials:true })
                 .then(()=>{
                     setLoading(false)
                 })
             }
             else{
-                axios.post('https://assignment-12-server-delta-ruddy.vercel.app/logout',loggedUser,{withCredentials:true})
+                axios.post('https://concord-server.vercel.app/logout',loggedUser,{withCredentials:true})
                 .then(result=>{
                     setLoading(false)
                     console.log(result.data)

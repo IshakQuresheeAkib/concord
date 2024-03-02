@@ -1,24 +1,42 @@
 import { useQuery } from "@tanstack/react-query";
-import { useNavigate } from "react-router-dom";
 import useAxiosSecure from "../../hook/useAxiosSecure";
 import BiodataCard from "../Shared/BiodataCard/BiodataCard";
 import Heading from "../../Components/Heading/Heading";
 import { FiHeart } from "react-icons/fi";
 import { LuPhoneCall } from "react-icons/lu";
-import { Button } from "antd";
+import { Button, Modal } from "antd";
 import usePremium from "../../hook/usePremium";
 import { enqueueSnackbar } from "notistack";
 import useBiodata from "../../hook/useBiodata";
 import useAuth from "../../hook/useAuth";
+import { TfiBag } from "react-icons/tfi";
+import backgroundSVG from '../../../public/svg-background.svg'
+import useAdmin from "../../hook/useAdmin";
+import Loader from "../../Components/Loader/Loader";
+import { useState } from "react";
+import Checkout from "../Checkout/Checkout";
+
 
 const BiodataDetails = () => {
 
     const {user} = useAuth();
     const axiosSecure = useAxiosSecure();
-    const navigate = useNavigate();
-    const [isPremium] = usePremium();
+    const [isPremium,premiumPending] = usePremium();
+    const [isAdmin,isPending] = useAdmin();
 
-    const [biodata,refetch] = useBiodata();
+    const [biodata,refetch,isLoading] = useBiodata();
+
+    const [isModalOpen, setIsModalOpen] = useState(false);
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+
 
     const {BiodataId,Name,BiodataType,ProfileImageLink,Age,Occupation,PermanentDivision,FathersName,MothersName,PresentDivision,Height,Weight,DateOfBirth,Race,ExpectedPartnerAge,ExpectedPartnerWeight,ExpectedPartnerHeight,ContactEmail,MobileNumber} = biodata || {}
 
@@ -28,6 +46,18 @@ const BiodataDetails = () => {
         queryFn:()=> axiosSecure.get(`/biodatas?type=${BiodataType}`)
     })
 
+    
+    const {data:isRequested = []} = useQuery({
+        queryKey:['requestedBiodatas',BiodataId],
+        queryFn:() => axiosSecure.get(`/contact-request?id=${BiodataId}&UserEmail=${user?.email}`)
+    })
+    
+    if (isLoading || isPending || premiumPending ) {
+        return <Loader width='52'></Loader>;
+    }
+
+    const requested = isRequested?.data?.message;
+    console.log(requested);
     const handleFavourite = () => {        
             axiosSecure.post('/favorites-biodata',{Name,BiodataId,PermanentDivision,Occupation,userEmail:user?.email})
             .then(result=>{
@@ -43,59 +73,64 @@ const BiodataDetails = () => {
     }
 
     return (
-        <div className="mt-14">
-            <Heading>Details Biodata</Heading>
-            <div className="max-w-7xl mx-auto mb-40 flex gap-20 justify-between">
-                <div className="w-3/4">
-                    <div className="mt-10 border-b-8 shadow rounded-xl border-light-teal flex h-fit py-10 px-10 justify-between items-center">                          
-                        <div className="">
-                            <img className="w-40 rounded-2xl mb-5" src={ProfileImageLink}/>
-                            <div>
-                            <h4 className="text-5xl font-bold">{Name}</h4>
-                            <h4 className="text-xl">{Occupation}</h4>
-                            </div>
+        <div>
+            <img loading="lazy" className="w-full absolute top-0 h-96 object-cover -z-50" src={backgroundSVG}></img>
+            <div className="max-w-6xl 2xl:mx-auto mx-10 my-52 gap-20 justify-between z-50 bg-white rounded-xl">
+                <div className="mt-10 border-b-8 shadow rounded-xl border-teal flex md:flex-row flex-col py-10 lg:px-10 px-4 md:justify-between justify-center items-center">                          
+                    <div className="">
+                        <img loading="lazy" className="w-52 h-52 rounded-full object-cover mb-5 md:mx-0 mx-auto" src={ProfileImageLink}/>
+                        <div className="flex flex-col md:items-start items-center md:text-left text-center">
+                        <h4 className="text-4xl font-bold">{Name}</h4>
+                        <div className="flex items-center text-xl mt-4">
+                            <TfiBag className=""/>
+                            <h1 className="px-2 text-xl">{Occupation}</h1>
                         </div>
-                        <div className="border h-96 border-dotted border-light-teal mr-10"></div>
-                        <div className="w-1/2 tracking-wide leading-10">
-                            <h2 className="font-semibold">Biodata Id: {BiodataId}</h2>
-                            <h2 className="font-semibold">Fathers Name: {FathersName}</h2>
-                            <h2 className="font-semibold">Mothers Name: {MothersName}</h2>
-                            <h2 className="font-semibold">Permanent Address: {PermanentDivision}</h2>
-                            <h2 className="font-semibold">Present Address: {PresentDivision}</h2>
-                            <h2 className="font-semibold">Date of Birth: {DateOfBirth}</h2>
-                            <h2 className="font-semibold">Race: {Race}</h2>
-                            <h2 className="font-semibold">Age: {Age} years old</h2>
-                            <h2 className="font-semibold">Expected Partner Age: Around {ExpectedPartnerAge} years old</h2>
-                            <h2 className="font-semibold">Height: {Height}</h2>
-                            <h2 className="font-semibold">Expected Partner Height: {ExpectedPartnerHeight}</h2>
-                            <h2 className="font-semibold">Weight: {Weight}</h2>
-                            <h2 className="font-semibold">Expected Partner Weight: {ExpectedPartnerWeight}</h2>
+                        </div>
+                        <div className="flex md:flex-row flex-col md:justify-normal justify-center mt-9 gap-10 mx-auto ">
+                            <Button type="" onClick={handleFavourite} className="bg-teal text-white" icon={<FiHeart />}>Add to Favourite</Button>
                             {
-                                isPremium && <div>
-                                    <h2 className="font-semibold">Email: {ContactEmail}</h2>
-                                    <h2 className="font-semibold">Contact Number: {MobileNumber}</h2>
-                                </div>
+                                !isPremium && !isAdmin && !requested && <Button type="" onClick={showModal} className="bg-teal text-white" icon={<LuPhoneCall />}>Request for Contact info</Button> 
                             }
+                        </div>
+                    </div>
+                    <div className="border md:h-96 md:w-0 w-72 border-dotted border-light-teal md:mr-10 md:my-0 my-20"></div>
+                    <div className="md:w-1/2 tracking-wide leading-10">
+                        <h2 className="font-semibold">Biodata Id: {BiodataId}</h2>
+                        <h2 className="font-semibold">Fathers Name: {FathersName}</h2>
+                        <h2 className="font-semibold">Mothers Name: {MothersName}</h2>
+                        <h2 className="font-semibold">Permanent Address: {PermanentDivision}</h2>
+                        <h2 className="font-semibold">Present Address: {PresentDivision}</h2>
+                        <h2 className="font-semibold">Date of Birth: {DateOfBirth}</h2>
+                        <h2 className="font-semibold">Race: {Race}</h2>
+                        <h2 className="font-semibold">Age: {Age} years old</h2>
+                        <h2 className="font-semibold">Expected Partner Age: Around {ExpectedPartnerAge} years old</h2>
+                        <h2 className="font-semibold">Height: {Height}</h2>
+                        <h2 className="font-semibold">Expected Partner Height: {ExpectedPartnerHeight}</h2>
+                        <h2 className="font-semibold">Weight: {Weight}</h2>
+                        <h2 className="font-semibold">Expected Partner Weight: {ExpectedPartnerWeight}</h2>
+                        {
+                            (isPremium || isAdmin) && <div>
+                                <h2 className="font-semibold">Email: {ContactEmail}</h2>
+                                <h2 className="font-semibold">Contact Number: {MobileNumber}</h2>
+                            </div>
+                        }
 
-                    
-                        </div>
+                
                     </div>
-                    <div className="flex justify-center mt-5 gap-10 mx-auto ">
-                    <Button type="" onClick={handleFavourite} className="bg-teal text-white" icon={<FiHeart />}>Add to Favourite</Button>
-                    {
-                        isPremium || <Button type="" onClick={()=>navigate(`/checkout/${BiodataId}`)} className="bg-teal text-white" icon={<LuPhoneCall />}>Request for Contact info</Button>
-                    }
-                    </div>
-                </div>
-                <div className=""> 
-                    <h2 className="text-center text-2xl font-bold text-teal border-r-4 w-fit mx-auto pr-2">Similar {BiodataType} Biodatas</h2>             
-                        <div className=" gap-16 flex-wrap justify-center items-center mt-8">
-                                {
-                                    biodatas?.data && biodatas?.data.map(biodata=><BiodataCard key={biodata._id} biodata={biodata}></BiodataCard>)
-                                }
-                        </div>
+                </div>                                 
+            </div>
+            <Modal open={isModalOpen} type='primary' onOk={handleOk} onCancel={handleCancel} footer={[]} >
+            <Checkout></Checkout>
+            </Modal>   
+            <div className=""> 
+                <Heading>Similar {BiodataType} Biodatas</Heading>
+                <div className="flex gap-20 flex-wrap justify-center items-center mt-16">
+                        {
+                            biodatas?.data && biodatas?.data.map(biodata=><BiodataCard key={biodata._id} biodata={biodata}></BiodataCard>)
+                        }
                 </div>
             </div>
         </div>
     )}
 export default BiodataDetails;
+

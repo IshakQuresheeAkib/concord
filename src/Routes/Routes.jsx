@@ -5,7 +5,6 @@ import Faq from "../Pages/Shared/Faq/Faq";
 import ContactUs from "../Pages/Shared/ContactUs/ContactUs";
 import Login from "../Pages/Login/Login";
 import Signup from "../Pages/Signup/Signup";
-import Biodatas from "../Pages/Biodatas/Biodatas";
 import AboutUs from "../Pages/AboutUs/AboutUs";
 import Dashboard from "../Pages/Dashboard/Dashboard/Dashboard";
 import PrivateRoutes from "./PrivateRoutes/PrivateRoute";
@@ -20,6 +19,7 @@ import ApprovedContactReq from "../Pages/Dashboard/Admin/ApprovedContactReq/Appr
 import AdminRoute from "./AdminRoute";
 import BiodataDetails from "../Pages/BiodataDetails/BiodataDetails";
 import Checkout from "../Pages/Checkout/Checkout";
+import UserRoute from "./UserRoute";
   
 export  const router = createBrowserRouter([
     {
@@ -34,18 +34,9 @@ export  const router = createBrowserRouter([
         {
           path:'/contact-us',
           element:<ContactUs></ContactUs>
-        },
+        },            
         {
-          path:'/login',
-          element:<Login></Login>
-        },
-        {
-          path:'/signup',
-          element:<Signup></Signup>
-        },
-        {
-          path:'/biodatas',
-          element:<Biodatas></Biodatas>
+          path:'/biodatas'          
         },
         {
           path:'/about-us',
@@ -58,7 +49,8 @@ export  const router = createBrowserRouter([
         {
           path:'/checkout/:id',
           element:<PrivateRoutes><Checkout></Checkout></PrivateRoutes>
-        }
+        },
+        
       ]
     },
     {
@@ -68,19 +60,19 @@ export  const router = createBrowserRouter([
         // users route
         {
           path:'/dashboard/edit',
-          element:<EditBiodata></EditBiodata>
+          element:<UserRoute><EditBiodata></EditBiodata></UserRoute>
         },
         {
           path:'/dashboard/view-biodata/:id',
-          element:<ViewBiodata></ViewBiodata>
+          element:<UserRoute><ViewBiodata></ViewBiodata></UserRoute>
         },
         {
           path:'/dashboard/contact-request',
-          element:<ContactRequest></ContactRequest>
+          element:<UserRoute><ContactRequest></ContactRequest></UserRoute>
         },
         {
           path:'/dashboard/favourite-biodata',
-          element:<Favourite></Favourite>
+          element:<UserRoute><Favourite></Favourite></UserRoute>
         },
         // admin routes
         {
@@ -89,16 +81,24 @@ export  const router = createBrowserRouter([
         },
         {
           path:'/dashboard/admin/manage-users',
-          element:<ManageUsers></ManageUsers>
+          element:<AdminRoute><ManageUsers></ManageUsers></AdminRoute>
         },
         {
           path:'/dashboard/admin/approved-premium',
-          element:<ApprovedPremium></ApprovedPremium>
+          element:<AdminRoute><ApprovedPremium></ApprovedPremium></AdminRoute>
         },
         {
           path:'/dashboard/admin/approved-contact-request',
-          element:<ApprovedContactReq></ApprovedContactReq>
+          element:<AdminRoute><ApprovedContactReq></ApprovedContactReq></AdminRoute>
         },
       ]
-    }
+    },
+    {
+      path:'/login',
+      element:<Login></Login>
+    },
+    {
+      path:'/signup',
+      element:<Signup></Signup>
+    },
   ]);

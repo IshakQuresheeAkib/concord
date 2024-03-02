@@ -3,35 +3,44 @@ import { TfiBag } from "react-icons/tfi";
 import PrimaryBtn from "../../../Components/Button/PrimaryBtn";
 import {  SendOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
+import { CgProfile } from "react-icons/cg";
 
 
 const BiodataCard = ({biodata}) => {
 
-    const {BiodataId,BiodataType,ProfileImageLink,Age,Occupation,PermanentDivision} = biodata || {}
+    const {BiodataId,ProfileImageLink,Age,Occupation,PermanentDivision,Name,PresentDivision} = biodata || {}
     const navigate = useNavigate();
 
     return (
-        <div className="bg-gray-200 font-sans  flex flex-row justify-center items-center mt-36">
-            <div className="mx-auto w-80 bg-white  shadow-lg hover:shadow duration-300 p-4 text-center">
-                <img className="w-32 h-32 mx-auto rounded-full -mt-20 border-8 border-white" src={ProfileImageLink} alt=""/>
-                <p className="text-center mt-2 font-light text-sm">Id:{BiodataId}</p>
-                <h2 className="text-center my-2 text-3xl font-medium">{BiodataType}</h2>
-                <div className="text-center font-normal">{Age} years old</div>
-                <div className="flex my-5">
-                <div className="w-1/2 text-sm text-center flex items-center justify-center gap-1">
-                    <MdOutlineLocationOn  className="text-xl"/>
-                    <p>{PermanentDivision}</p> 
+        <div className="w-full mt-7 2xl:max-w-sm max-w-xs overflow-hidden rounded-lg shadow-lg  hover:text-white" data-aos='slide-up'>
+                <div className="flex items-center px-2 py-3 bg-teal">
+                <img loading="lazy" className="object-cover w-32 h-32 rounded-full" src={ProfileImageLink} alt="avatar" />
+                    <div className="text-left ml-3 ">
+                    <h1 className="text-lg font-semibold text-white">{Name}</h1>
+                    <p className="pt-1 text-white/80 text-sm">{PresentDivision !== PermanentDivision ? `I originally come from ${PermanentDivision}, and currently, I reside in ${PresentDivision}.` : `I'm originally from ${PermanentDivision}, and I currently reside here too.`}</p>
+
+                    </div>
                 </div>
-                <div className="w-0 border border-gray-300 mx-5"></div>
-                <div className="w-1/2 text-sm  text-center flex items-center justify-center gap-1">
-                    <TfiBag />
-                    <p>{Occupation}</p> 
+                <div className="px-3 py-6 text-left duration-700 transition hover:bg-teal">
+                    <h1 className="text-xl font-semibold ">Biodata ID: {BiodataId}</h1>                  
+                    <div className="flex items-center mt-4 text-gray-700 dark:text-gray-200">
+                        <CgProfile className="w-5 h-5"/>
+                        <h1 className="px-2 text-sm">{Age} years old</h1>
+                    </div>
+                    <div className="flex items-center mt-4 text-gray-700 dark:text-gray-200">
+                        <MdOutlineLocationOn className="w-5 h-5"/>
+                        <h1 className="px-2 text-sm">{PresentDivision}</h1>
+                    </div>
+
+                    <div className="flex items-center mt-4 text-gray-700 dark:text-gray-200">
+                        <TfiBag className="w-5 h-5"/>
+                        <h1 className="px-2 text-sm">{Occupation}</h1>
+                    </div>
+                    <div className="pt-7 mx-auto w-fit" onClick={()=>navigate(`/biodata-details/${BiodataId}`)}>
+                    <PrimaryBtn data={'View Profile'} icon={<SendOutlined />}></PrimaryBtn>
                 </div>
                 </div>
-                <div className="py-3" onClick={()=>navigate(`/biodata-details/${BiodataId}`)}>
-                <PrimaryBtn data={'View Profile'} icon={<SendOutlined />}></PrimaryBtn>
-                </div>
-            </div>
+                
         </div>
         
     )}

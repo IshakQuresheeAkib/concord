@@ -66,8 +66,13 @@ const ManageUsers = () => {
           key: 'action',
           render: (_, record) => (
             <Space size="middle">
-              <Button type='' onClick={()=>handleAdmin(record.email)} className='bg-teal text-white'>Make Admin</Button>
-              <Button type='' onClick={()=>handlePremium(record.email)} className='bg-teal text-white'>Make Premium</Button>
+              {
+                record.role !== 'admin' && <Button type='' onClick={()=>handleAdmin(record.email)} className='bg-teal text-white'>Make Admin</Button>
+              }
+              {
+                record.role !== 'premium' && record.role !=='admin' && <Button type='' onClick={()=>handlePremium(record.email)} className='bg-teal text-white'>Make Premium</Button>
+              }
+              
             </Space>
           ),
         },

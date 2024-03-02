@@ -2,12 +2,12 @@ import concord from '../../../assets/concord.png'
 import { SendOutlined } from '@ant-design/icons';
 import PrimaryBtn from '../../../Components/Button/PrimaryBtn';
 import { Link } from 'react-router-dom';
-
+import './styles.css'
  
 const Footer = () => {
     return (
-        <div className="relative bg-teal mt-40">
-            <svg className="absolute top-0 w-full h-6  -mt-5 sm:-mt-10 sm:h-16 text-teal"
+        <div className="relative background mt-40 min-h-[70vh]">
+            {/* <svg className="absolute top-0 w-full h-6  -mt-5 sm:-mt-10 sm:h-16 text-teal"
             preserveAspectRatio="none"
             viewBox="0 0 1440 54"
             >
@@ -15,32 +15,37 @@ const Footer = () => {
                 fill="currentColor"
                 d="M0 22L120 16.7C240 11 480 1.00001 720 0.700012C960 1.00001 1200 11 1320 16.7L1440 22V54H1320C1200 54 960 54 720 54C480 54 240 54 120 54H0V22Z"
             />
-            </svg>
-            <div className="px-4 pt-5  mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-10 text-white">
-                <div className="grid gap-10 row-gap-10 mb-8 lg:grid-cols-6">
-                    <div className="md:max-w-lg lg:col-span-3">
-                    <img src={concord} alt="" className="w-52 mt-2 -ml-10"/>
+            </svg> */}
+            <div className="custom-shape-divider-top-1705293661">
+                <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                    <path fill='white' d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" className="shape-fill"></path>
+                </svg>
+            </div>
+
+            <div className="xl:pt-28 pt-16 pb-5 px-3 sm:px-0 mx-auto flex flex-col justify-center h-full sm:max-w-xl md:max-w-2xl lg:max-w-4xl 2xl:max-w-7xl text-white">
+                <div className="flex md:flex-row flex-col md:gap-32 2xl:gap-72 mb-8">
+                    <div className="md:max-w-lg">
+                    <img loading="lazy" src={concord} alt="" className="w-52 mt-2 md:-ml-10 -ml-5"/>
                         <div className="mt-4 ">
                             <p className="text-xs mb-4">Join Concord today and explore the beauty of relationships as you navigate through a space that celebrates the simplicity and warmth of genuine connections.</p>
                             <strong>Subscribe for Updates</strong>
-                            <form className="flex flex-col gap-4 items-center mt-1 md:flex-row text-black">
-                            <input className="w-3/4 bg-gray text-black/80 p-2.5 rounded-lg focus:outline-none focus:shadow-outline " type="text" placeholder="Email" />
+                            <form className="flex flex-col gap-4 md:items-center items-start mt-1 md:flex-row text-black">
+                                <input className="w-3/4 bg-gray text-black/80 p-2.5 rounded-lg focus:outline-none focus:shadow-outline " type="text" placeholder="Email" />
                                <PrimaryBtn data={'Subscribe'} icon={<SendOutlined />}></PrimaryBtn>
                             </form>
                         </div>
                     </div>
-                    <div className="grid grid-cols-2 gap-5 row-gap-8 lg:col-span-3 md:grid-cols-4 items-center">
-                        
-                        <div className='flex flex-col gap-5 mt-6 text-white/80'>
+                    <div className="">                       
+                        <div className='flex flex-col gap-5 mt-6 w-24 text-white/80'>
                             <h2 className='font-bold text-white'>Explore</h2>
-                            <Link to='/' className=''>Home</Link>    
-                            <Link to='/biodatas' className=''>Biodatas</Link>    
-                            <Link to='/contact-us' className=''>Contact Us</Link>    
-                            <Link to='/about-us' className=''>About Us</Link>    
+                            <Link to='/' className='hover:text-white duration-300'>Home</Link>    
+                            <Link to='/biodatas' className='hover:text-white duration-300'>Biodatas</Link>    
+                            <Link to='/contact-us' className='hover:text-white duration-300'>Contact Us</Link>    
+                            <Link to='/about-us' className='hover:text-white duration-300'>About Us</Link>    
                         </div>               
                     </div>
                 </div>
-                <div className="flex flex-col justify-between pt-5 pb-10 border-t border-deep-purple-accent-200 sm:flex-row">
+                <div className="flex flex-col justify-between pt-5 pb-0 border-t border-deep-purple-accent-200 sm:flex-row">
                     <p className="text-sm text-gray-100">
                     © Copyright 2020 Concord Ltd. All rights reserved.
                     </p>

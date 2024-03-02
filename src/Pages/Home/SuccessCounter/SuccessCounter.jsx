@@ -15,14 +15,14 @@ const SuccessCounter = () => {
 
     return (
         <div className="container mx-auto my-32 flex flex-col max-w-6xl gap-16 px-5">
-        <div className="grid grid-cols-1 gap-32 lg:grid-cols-2">
-          <div className="flex flex-col gap-16">
+        <div className="grid grid-cols-1 gap-32 lg:grid-cols-2 overflow-hidden">
+          <div className="flex flex-col gap-16" data-aos='fade-right'>
             <div className="flex flex-col gap-2 text-center lg:text-left">
                 <Heading>Our Impact</Heading>
                 <p className='text-center text-sm md:ml-8'>Making a Difference: Our Impact on Matrimonial Journeys</p>
             </div>
             {
-              isPending ? <Loader></Loader>
+              isPending ? <Loader width='52'></Loader>
               :
               <div
               className="grid w-full grid-cols-1 gap-x-10 gap-y-16 md:grid-cols-2"
@@ -91,7 +91,7 @@ const SuccessCounter = () => {
             }
           </div>
           <div
-            className="hidden rounded-2xl bg-[url('https://i.ibb.co/37LvS3H/closeup-shot-wedding-couple-hold.jpg')] bg-cover bg-center lg:block"
+            className="hidden rounded-2xl bg-[url('https://i.ibb.co/3h0dNcV/Green-And-Violet-Illustration-Fl.png')] bg-cover bg-center lg:block" data-aos='fade-left'
           ></div>
         </div>
       </div>

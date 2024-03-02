@@ -15,10 +15,11 @@ const FeaturedCards = () => {
     const biodatas = data?.data || []
 
     return (
-        <div className="my-36 max-w-7xl mx-auto">
+        <div className="my-36 2xl:mx-auto md:mx-8 relative">
              <Heading>Featured Biodata</Heading>
-             <p className="text-center mt-3">Explore the beauty of relationships as you navigate through a space!</p>
-             <div className="flex flex-wrap justify-center gap-10">
+             <img loading="lazy" src="https://i.ibb.co/CzbNRYg/Untitled-designaaa-1.png" alt="" className="absolute xl:-right-20 -right-16 2xl:-top-20 -top-36 md:w-64 w-44 opacity-30"/>
+             <p className="text-center mt-3 mb-20">Explore the beauty of relationships as you navigate through a space!</p>
+             <div className="flex flex-wrap justify-center gap-11">
                 {
                     biodatas?.map(biodata=><BiodataCard biodata={biodata} key={biodata?._id}></BiodataCard>)
                 }

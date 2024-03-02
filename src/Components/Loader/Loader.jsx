@@ -1,9 +1,10 @@
-import { GiRoundStruck } from "react-icons/gi";
+import Lottie from "lottie-react";
+import loaderLottie from '../../assets/loader.json'
 
-const Loader = () => {
+const Loader = ({width,height}) => {
     return (
-        <div className="flex justify-center h-screen items-center">
-        <GiRoundStruck  className='animate-ping text-light-teal -rotate-180 text-4xl h-20'></GiRoundStruck> 
-    </div>
+        <div className={`${height || "h-screen"} flex justify-center  items-center`}>
+          <Lottie animationData={loaderLottie} className={`w-${width}`}></Lottie>
+        </div>
     )}
 export default Loader;

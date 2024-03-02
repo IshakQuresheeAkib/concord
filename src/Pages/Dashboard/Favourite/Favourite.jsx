@@ -38,7 +38,7 @@ const Favourite = () => {
         {
           title: 'Name',
           dataIndex: 'Name',
-          key: 'name',
+          key: 'name4',
         },
         {
           title: 'Permanent Address',
@@ -52,7 +52,7 @@ const Favourite = () => {
         },
         {
           title: 'Action',
-          key: 'action',
+          key: 'action4',
           render: (_, record) => (
             <Button type='' onClick={()=>handleDelete(record._id)} className='bg-teal text-white' icon={<RiDeleteBin6Line className=' text-xl'/>}></Button>
 
@@ -64,7 +64,7 @@ const Favourite = () => {
     return (
         <div className='my-14 max-w-4xl mx-auto'>
             <Heading>Favorites Biodata</Heading>
-            <Table columns={columns} dataSource={data?.data} className='mt-10'/>
+            <Table columns={columns} dataSource={data?.data} className='mt-10  overflow-x-scroll'/>
         </div>
     )}
 export default Favourite;

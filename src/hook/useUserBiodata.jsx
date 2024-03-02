@@ -1,19 +1,24 @@
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "./useAuth";
 import useAxiosSecure from "./useAxiosSecure";
+import Loader from "../Components/Loader/Loader";
 
 const useUserBiodata = () => {
 
     const {user} =useAuth();
     const axiosSecure = useAxiosSecure();
 
-    const {data = [],refetch} = useQuery({
+    const {data = [],refetch,isLoading} = useQuery({
         queryKey:['email',user],
         queryFn:()=>axiosSecure.get(`/biodatas/${user?.email}`)
     })
 
     const userBiodata = data?.data
+    console.log(isLoading);
+    if (isLoading) {
+        <Loader width='52'></Loader>
+    }
 
-    return [userBiodata,refetch]
+    return [userBiodata,refetch,isLoading]
 }
 export default useUserBiodata;

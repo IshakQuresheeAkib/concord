@@ -3,18 +3,19 @@ import Loader from "../Components/Loader/Loader";
 import { enqueueSnackbar } from "notistack";
 import useAdmin from "../hook/useAdmin";
 
-const AdminRoute = ({children}) => {
+
+const UserRoute = ({children}) => {
     const [isAdmin,isPending] = useAdmin();
           
     if (isPending) {
         return <Loader width='52'></Loader>       
     }
 
-    if (isAdmin) {
+    if (!isAdmin) {
         return children;      
     }
-    enqueueSnackbar('Unauthorized Access!',{variant:'error'})
+    enqueueSnackbar('This is not user account!',{variant:'error'})
     return <Navigate to='/'></Navigate>
     
 }
-export default AdminRoute;
+export default UserRoute;

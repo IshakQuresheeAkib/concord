@@ -7,7 +7,7 @@ const usePremium = () => {
     const {user} = useAuth();
     const axiosPublic = useAxiosPublic();
 
-    const {data:isPremium = false,isPending} = useQuery({
+    const {data:isPremium = false,isPending:premiumPending} = useQuery({
         queryKey:[user?.email,user],
         queryFn:async()=> {
             const res = await axiosPublic.get(`/users/premium/${user?.email}`)
@@ -15,6 +15,6 @@ const usePremium = () => {
         }
     }) 
 
-    return [isPremium,isPending]
+    return [isPremium,premiumPending]
 }
 export default usePremium;

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosPublic = axios.create({
-    baseURL:'https://assignment-12-server-delta-ruddy.vercel.app',
+    baseURL:'https://concord-server.vercel.app',
     withCredentials:true
 })
 

@@ -11,7 +11,7 @@ const PrivateRoutes = ({children}) => {
     const {pathname} = useLocation();
           
     if (loading) {
-        return <Loader></Loader>       
+        return <Loader width='52'></Loader>       
     }
 
     if (!user) {

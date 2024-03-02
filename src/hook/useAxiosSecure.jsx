@@ -5,7 +5,7 @@ import axios from "axios";
 // import { enqueueSnackbar } from "notistack";
 
 const axiosSecure = axios.create({
-    baseURL:'https://assignment-12-server-delta-ruddy.vercel.app',
+    baseURL:'https://concord-server.vercel.app',
     withCredentials:true
 })
 

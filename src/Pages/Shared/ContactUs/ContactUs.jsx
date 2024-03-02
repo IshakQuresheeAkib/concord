@@ -1,35 +1,52 @@
-import PrimaryBtn from "../../../Components/Button/PrimaryBtn";
 import Heading from "../../../Components/Heading/Heading";
 import { FiPhoneCall } from "react-icons/fi";
 import { HiOutlineBuildingOffice2 } from "react-icons/hi2";
-import { SendOutlined } from "@ant-design/icons";
+import emailjs from '@emailjs/browser';
+import { useRef } from "react";
+import { enqueueSnackbar } from "notistack";
 
 
 const ContactUs = () => {
-    return (
-        <div className="flex justify-center items-center mx-auto lg:w-[90%] mb-52 mt-24">
-          <div className="container mx-auto my-4 px-4 lg:px-20">
 
-            <div className="w-full p-8 my-4 md:px-12 lg:w-9/12 lg:pl-20 lg:pr-40 mr-auto rounded-2xl shadow-2xl">
+  const form = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs.sendForm('service_1cyv61k', 'template_43ljisa', form.current, 'nmu0QC78WxNdqxX2X')
+      .then((result) => {
+          console.log(result.text);
+          if (result.text == 'OK') {
+            form.current.reset();
+            return enqueueSnackbar('Message send successfully!',{variant:'success'})
+          }
+      }, (error) => {
+          console.log(error.text);
+      });
+  };
+
+    return (
+        <div className="flex justify-center items-center mx-auto sm:w-[90%] mb-52 mt-24" data-aos='fade-up'>
+          <div className="container mx-auto my-4 px-4 2xl:px-20">
+
+            <div className="w-full p-8 my-4 md:px-12 lg:w-9/12 lg:pl-20 lg:pr-40 mr-auto rounded-2xl shadow-xl">
               <div className="flex justify-center">
                 <Heading>Send us a message</Heading>
               </div>
-              <div className="grid grid-cols-1 gap-5 md:grid-cols-2 mt-5">
-                <input className="w-full bg-gray text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
-                    type="text" placeholder="First Name*" />
-                <input className="w-full bg-gray text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
-                    type="text" placeholder="Last Name*" />
-                <input className="w-full bg-gray text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
-                    type="email" placeholder="Email*" />
-                <input className="w-full bg-gray text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
-                    type="number" placeholder="Phone*" />
+              <form ref={form} onSubmit={sendEmail}>
+                <div className="grid grid-cols-1 gap-5 md:grid-cols-2 mt-5">
+                  <input className="w-full bg-gray text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
+                      type="text" placeholder="First Name*" name='from_name' required/>
+                  <input className="w-full bg-gray text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
+                      type="text" placeholder="Last Name*" />
+                  <input className="w-full bg-gray text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
+                      type="email" placeholder="Email*" name='from_email' required/>
+                  <input className="w-full bg-gray text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
+                      type="number" placeholder="Phone*" />
                 </div>
-                <div className="my-4">
-                  <textarea placeholder="Message*" className="w-full h-32 bg-gray text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"></textarea>
-                </div>
-                <div className="my-2">
-                <PrimaryBtn data={'Send Message'} icon={<SendOutlined />}></PrimaryBtn>
-                </div>
+                <textarea name="message" placeholder="Message*" className="w-full h-32 my-5 bg-gray text-gray-900 p-3 rounded-lg focus:outline-none focus:shadow-outline" required></textarea>
+                <input type="submit" value='Submit' className="bg-light-teal shadow font-medium mx-auto py-3 w-44 text-lg hover:bg-white duration-700 rounded-3xl cursor-pointer" />
+              </form>
               </div>
 
               <div

@@ -37,7 +37,7 @@ const ApprovedPremium = () => {
         {
           title: 'Biodata Id',
           dataIndex: 'BiodataId',
-          key: 'name2',
+          key: 'biodataId2',
           render: (text) => <a>{text}</a>,
         },
         {
