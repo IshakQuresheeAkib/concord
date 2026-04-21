@@ -16,14 +16,11 @@ const ApprovedPremium = () => {
     })
 
     const handlePremium = (email) =>{
-        console.log(email)
         axiosSecure.patch(`/users/admin/${email}`,{role:'premium'})
         .then(result=>{
-            console.log('premium ',result?.data);
             if (result?.data.modifiedCount) {
                     axiosSecure.delete(`/biodatas/admin/premium-request/${email}`)
                     .then(res=>{
-                        console.log('DELETED',res.data);
                         if (res.data?.deletedCount) {
                             refetch();
                             enqueueSnackbar('Made Premium User Successfully!',{variant:'success'})

@@ -13,7 +13,6 @@ const Testimonial = () => {
         queryKey:['success-stories'],
         queryFn:()=>axiosSecure.get('/success-stories')
     })
-    console.log(data?.data);
 
     return (                                            
         <div className='relative '>

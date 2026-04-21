@@ -16,8 +16,6 @@ const ContactRequest = () => {
     queryFn:()=>axiosSecure.get(`/contact-request?UserEmail=${user?.email}`)
   })
 
-  console.log(data?.data);
-
     const columns = [
         {
           title: 'Biodata Id',

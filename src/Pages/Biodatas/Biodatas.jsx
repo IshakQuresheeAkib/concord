@@ -22,13 +22,11 @@ const Biodatas = () => {
         setMinAge(value[0])
         setMaxAge(value[1])
     }
-    console.log(type,'minAge',minAge,'maxAge',maxAge,location);
 
     const {data:biodatas = [],isPending} = useQuery({
         queryKey:['biodatas',maxAge,minAge,type,location],
         queryFn:() => axiosPublic.get(`/biodatas?type=${type}&maxAge=${maxAge}&minAge=${minAge}&location=${location}`)
     })
-    console.log(biodatas?.data);
 
     const locations = [
         {value:'',label:'All'},

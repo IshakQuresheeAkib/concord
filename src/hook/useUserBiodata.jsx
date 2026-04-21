@@ -14,7 +14,6 @@ const useUserBiodata = () => {
     })
 
     const userBiodata = data?.data
-    console.log(isLoading);
     if (isLoading) {
         <Loader width='52'></Loader>
     }

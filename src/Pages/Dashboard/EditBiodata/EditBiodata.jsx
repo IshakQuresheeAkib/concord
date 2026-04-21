@@ -27,8 +27,6 @@ const EditBiodata = () => {
     if (isLoading) {
         return <Loader width='52'></Loader>
     }
-
-    console.log(userBiodata);
     
     const handleSubmit = e =>{
         e.preventDefault();

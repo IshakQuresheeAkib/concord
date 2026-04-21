@@ -57,11 +57,9 @@ const BiodataDetails = () => {
     }
 
     const requested = isRequested?.data?.message;
-    console.log(requested);
     const handleFavourite = () => {        
             axiosSecure.post('/favorites-biodata',{Name,BiodataId,PermanentDivision,Occupation,userEmail:user?.email})
             .then(result=>{
-                console.log(result?.data);
                 if (result?.data.insertedId) {
                     enqueueSnackbar('Added to Favourite Biodata Successfully!',{variant:'success'})
                     refetch()

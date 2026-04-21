@@ -14,7 +14,6 @@ const useBiodata = () => {
         queryFn: () => axiosSecure.get(`/biodata-details/${id}`)
     })
     const biodata = data?.data
-    console.log();
     return [biodata,refetch,isLoading]
 }
 export default useBiodata;

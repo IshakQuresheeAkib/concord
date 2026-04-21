@@ -32,7 +32,6 @@ const Signup = () => {
         const profileImage = form.imageURL.files;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(profileImage);
 
        
 
@@ -45,7 +44,6 @@ const Signup = () => {
         }
         setIsLoading(true)
         const imageUrl = await UseImagebb(profileImage[0])
-        console.log(imageUrl);
         createUser(email,password)
         .then(()=>{
             setProfile(name,imageUrl)
@@ -53,7 +51,6 @@ const Signup = () => {
                 navigate('/' )
                 axiosPublic.post('/users',{name,email})
                 .then(result=>{
-                    console.log(result.data);
                     form.reset();
                     if (result.data.insertedId) {               
                        return enqueueSnackbar('Account created successfully!',{variant:'success'})
@@ -82,7 +79,6 @@ const Signup = () => {
             const name = result?.user?.displayName
             axiosPublic.post('/users',{name,email})
                 .then(result=>{
-                    console.log(result.data);
                     navigate('/' )
                     if (result.data.insertedId) {                       
                         return enqueueSnackbar('Account created successfully!',{variant:'success'})

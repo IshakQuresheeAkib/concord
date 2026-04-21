@@ -15,13 +15,12 @@ const ContactUs = () => {
 
     emailjs.sendForm('service_1cyv61k', 'template_43ljisa', form.current, 'nmu0QC78WxNdqxX2X')
       .then((result) => {
-          console.log(result.text);
           if (result.text == 'OK') {
             form.current.reset();
             return enqueueSnackbar('Message send successfully!',{variant:'success'})
           }
       }, (error) => {
-          console.log(error.text);
+          console.error(error.text);
       });
   };
 

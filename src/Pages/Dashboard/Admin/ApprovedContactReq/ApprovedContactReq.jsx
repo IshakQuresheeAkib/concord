@@ -13,12 +13,10 @@ const ApprovedContactReq = () => {
     queryFn:()=>axiosSecure.get('/contact-request')
   })
 
-  console.log(data?.data);
 
   const handleApprove = (id) =>{
     axiosSecure.patch(`/contact-request/${id}`,{Status:'Approved'})
     .then(res=>{
-      console.log();
       if (res.data?.modifiedCount) {
         enqueueSnackbar('Added to Favourite Biodata Successfully!',{variant:'success'})
         refetch()

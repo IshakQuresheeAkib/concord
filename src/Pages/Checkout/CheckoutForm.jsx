@@ -28,7 +28,6 @@ const CheckoutForm = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log('hello');
         if (!stripe || !elements) {
             return;
         }
@@ -38,16 +37,14 @@ const CheckoutForm = () => {
             return;
         }
 
-        const {error,paymentMethod} = await stripe.createPaymentMethod({
+        const {error} = await stripe.createPaymentMethod({
             type: 'card',
             card,
         })
 
         if (error) {
-            console.log('[error]',error);
             setError(error.message)
         }else{
-            console.log('[PaymentMethod]',paymentMethod);
             setError('')
         }
         const {paymentIntent,error: confirmError} = await stripe.confirmCardPayment(clientSecret,{
@@ -60,17 +57,14 @@ const CheckoutForm = () => {
           }
         })
         if (confirmError) {
-          console.log('confirm error!',confirmError);
+          console.error('confirm error!',confirmError);
         } else{
-          console.log('payment intent',paymentIntent);
           if (paymentIntent.status === 'succeeded') {
             setTransactionId(paymentIntent.id)
-            console.log('transaction id',paymentIntent.id);
             // save the payment 
             const biodataInfo = {BiodataId,Name,MobileNumber,ContactEmail,Status:'Pending',UserEmail:user?.email}
             axiosSecure.post('/contact-request',biodataInfo)
             .then(res=>{
-              console.log(res?.data);
               if (res.data?.insertedId) {
                 return enqueueSnackbar('You successfully paid for contact info!',{variant:'success'})
             }

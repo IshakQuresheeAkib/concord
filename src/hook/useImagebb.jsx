@@ -10,7 +10,6 @@ const UseImagebb = async (image) => {
         'content-type': 'multipart/form-data'
       }
     })
-    // console.log(res?.data?.data?.display_url);
  
     const imageUrl = res?.data?.data?.display_url
 

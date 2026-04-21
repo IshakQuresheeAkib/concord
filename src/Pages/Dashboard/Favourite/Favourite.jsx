@@ -15,10 +15,7 @@ const Favourite = () => {
         queryFn:()=> axiosSecure.get(`/favorites-biodata?email=${user?.email}`)
     })
 
-    console.log(data?.data);
-
     const handleDelete = id => {
-        console.log(id);
         axiosSecure.delete(`/favorites-biodata/${id}`)
             .then(result=>{
                 if (result?.data.deletedCount) {

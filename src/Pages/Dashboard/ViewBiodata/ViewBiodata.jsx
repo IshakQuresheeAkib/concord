@@ -21,10 +21,8 @@ const ViewBiodata = () => {
     const {BiodataId,Name,ProfileImageLink,Age,Occupation,PermanentDivision,FathersName,MothersName,PresentDivision,Height,Weight,DateOfBirth,Race,ExpectedPartnerAge,ExpectedPartnerWeight,ExpectedPartnerHeight,ContactEmail,MobileNumber} = biodata || {}
 
     const handlePremium = () =>{
-        console.log('hello');
         axiosSecure.post('/biodatas/admin/premium-request',{Name,Email:ContactEmail,BiodataId})
         .then(res=>{
-            console.log(res?.data);
             if (res.data?.insertedId) {
                 return enqueueSnackbar('Requested For being Premium Biodata!',{variant:'success'})
             }

@@ -55,7 +55,6 @@ const AuthProvider = ({children}) => {
         const unSubscribe = onAuthStateChanged(auth,currentUser=>{
             const userEmail = currentUser?.email ||  user?.email;
             const loggedUser = {email:userEmail}
-            console.log(currentUser);
             setUser(currentUser)
             if (currentUser) {
                 axios.post('https://concord-server.vercel.app/jwt',loggedUser,{ withCredentials:true })
@@ -65,9 +64,8 @@ const AuthProvider = ({children}) => {
             }
             else{
                 axios.post('https://concord-server.vercel.app/logout',loggedUser,{withCredentials:true})
-                .then(result=>{
+                .then(()=>{
                     setLoading(false)
-                    console.log(result.data)
                 })
             }
             

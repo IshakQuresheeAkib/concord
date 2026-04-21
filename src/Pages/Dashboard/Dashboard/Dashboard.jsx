@@ -15,8 +15,7 @@ const Dashboard = () => {
 
     const {logOut,user} = useAuth()
     const [isAdmin] = useAdmin();
-    const [userBiodata,isLoading] = useUserBiodata() || [];
-    console.log(isLoading);
+    const [userBiodata] = useUserBiodata() || [];
 
     const {displayName,email,photoURL} = user || {}
     const {BiodataId} = userBiodata || {};

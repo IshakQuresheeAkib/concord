@@ -18,13 +18,9 @@ const ManageUsers = () => {
         queryFn:()=>axiosSecure.get(`/users?userName=${userName}`)
     })
     
-    console.log(user?.data);
-
     const handleAdmin = (email) =>{
-        console.log(email)
         axiosSecure.patch(`/users/admin/${email}`,{role:'admin'})
         .then(result=>{
-            console.log(result?.data.modifiedCount);
             if (result?.data.modifiedCount) {
                 refetch();
                 enqueueSnackbar('Made Admin Successfully!',{variant:'success'})
@@ -33,10 +29,8 @@ const ManageUsers = () => {
     }
 
     const handlePremium = (email) =>{
-        console.log(email)
         axiosSecure.patch(`/users/admin/${email}`,{role:'premium'})
         .then(result=>{
-            console.log(result?.data.modifiedCount);
             if (result?.data.modifiedCount) {
                 refetch();
                 enqueueSnackbar('Made Premium User Successfully!',{variant:'success'})
@@ -77,8 +71,6 @@ const ManageUsers = () => {
           ),
         },
       ];
-
-    console.log(userName.length,userName);
 
     return (
     <div className='my-14 max-w-4xl mx-auto'>
