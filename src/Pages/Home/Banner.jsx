@@ -12,7 +12,7 @@ const Banner = () => {
            <div className="">
              <Navbar></Navbar>
             <div className="relative" >
-                 <img loading="lazy" src="https://i.ibb.co/3Y0rF47/Untitled-designff-1.png"
+                 <img loading="lazy" src="https://i.ibb.co.com/Sw95S2Sb/hero-Banner.png"
                     className="absolute inset-0 object-cover w-full h-full"/>
                     <div className="bg-gradient-to-r absolute from-white/60 via-white/10 to-black/5 w-full h-screen bg-fixed"></div>
                         <div className="relative ">

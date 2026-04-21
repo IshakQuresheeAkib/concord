@@ -16,7 +16,7 @@ const Testimonial = () => {
 
     return (                                            
         <div className='relative '>
-            <div className=' bg-[url(https://i.ibb.co/rGz61wv/2206-w037-n003-436b-p1-436.jpg)] bg-fixed 2xl:h-[430px] lg:h-[450px] h-[100vh] bg-cover bg-no-repeat'></div>
+            <div className=' bg-[url(https://i.ibb.co.com/G4hWfDvR/feedback.jpg)] bg-fixed 2xl:h-[430px] lg:h-[450px] h-[100vh] bg-cover bg-no-repeat'></div>
             <div className='absolute w-full h-full bg-black/70 inset-0 backdrop-blur-sm '>
                 <div className='flex lg:flex-row flex-col mx-3 gap-10 lg:gap-0 2xl:mx-10 items-center justify-center'>
                     <div className='lg:w-1/2' data-aos='fade-right'>
