@@ -91,7 +91,7 @@ const SuccessCounter = () => {
             }
           </div>
           <div
-            className="hidden rounded-2xl bg-[url('https://i.ibb.co/3h0dNcV/Green-And-Violet-Illustration-Fl.png')] bg-cover bg-center lg:block" data-aos='fade-left'
+            className="hidden rounded-2xl bg-[url('https://i.ibb.co.com/WW3Pf55D/impact.webp')] bg-cover bg-center lg:block" data-aos='fade-left'
           ></div>
         </div>
       </div>

@@ -41,10 +41,10 @@ const Biodatas = () => {
 
     return (
         <div className="">
-            <div className="bg-[url(https://i.ibb.co/dDJSsKG/Untitled-designas-1.png)] [background-position:center_24%] relative w-screen h-96 overflow-hidden bg-no-repeat bg-cover bg-fixed top-0">
+            <div className="bg-[url(https://i.ibb.co.com/60h84M9Q/biodatas-banner.webp)] xl:[background-position:center_24%] relative w-screen xl:h-96 overflow-hidden bg-no-repeat bg-cover bg-fixed top-0">
                 <div className="absolute inset-0 bg-gradient-to-b from-white/50 via-white/25 to-black/10" />
                 <Navbar></Navbar>
-                <div className=" pt-32 md:w-full w-3/4 mx-auto text-center z-50">
+                <div className="pt-24 pb-5 xl:pt-32 md:w-full w-3/4 mx-auto text-center z-50">
                     <Heading>Biodatas</Heading>
                     <SubHeading>Explore the beauty of relationships as you navigate through a space</SubHeading>
             </div>
