@@ -1,35 +1,39 @@
-import { Radio, Select, Slider } from "antd";
-import Heading from "../../Components/Heading/Heading";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
-import useAxiosPublic from '../../hook/useAxiosPublic'
-import BiodataCard from "../Shared/BiodataCard/BiodataCard";
-import Loader from '../../Components/Loader/Loader'
-import Navbar from "../Shared/Navbar/Navbar";
-import SubHeading from "../../Components/SubHeading/SubHeading";
+import { motion } from "framer-motion";
 import { PiSealWarningFill } from "react-icons/pi";
 
+import useAxiosPublic from '../../hook/useAxiosPublic';
+import BiodataCard from "../Shared/BiodataCard/BiodataCard";
+import BiodataFilterSidebar from "./BiodataFilterSidebar";
+import Loader from '../../Components/Loader/Loader';
+import Navbar from "../Shared/Navbar/Navbar";
 
 const Biodatas = () => {
 
-    const axiosPublic = useAxiosPublic()
-    const [type,setType] = useState('')
-    const [maxAge,setMaxAge] = useState(40)
-    const [minAge,setMinAge] = useState(18)
-    const [location,setLocation] = useState('')
-    
-    const onAfterChange = value => {
-        setMinAge(value[0])
-        setMaxAge(value[1])
-    }
+    const axiosPublic = useAxiosPublic();
 
-    const {data:biodatas = [],isPending} = useQuery({
-        queryKey:['biodatas',maxAge,minAge,type,location],
-        queryFn:() => axiosPublic.get(`/biodatas?type=${type}&maxAge=${maxAge}&minAge=${minAge}&location=${location}`)
-    })
+    // Filters State
+    const [type, setType] = useState('');
+    const [maxAge, setMaxAge] = useState(40);
+    const [minAge, setMinAge] = useState(18);
+    const [location, setLocation] = useState('');
+
+    const activeFiltersCount = useMemo(() => {
+        let count = 0;
+        if (type) count += 1;
+        if (location) count += 1;
+        if (minAge !== 18 || maxAge !== 40) count += 1;
+        return count;
+    }, [type, location, minAge, maxAge]);
+
+    const { data: biodatas = [], isPending } = useQuery({
+        queryKey: ['biodatas', maxAge, minAge, type, location],
+        queryFn: () => axiosPublic.get(`/biodatas?type=${type}&maxAge=${maxAge}&minAge=${minAge}&location=${location}`)
+    });
 
     const locations = [
-        {value:'',label:'All'},
+        { value: '', label: 'All Divisions' },
         { value: 'Dhaka', label: 'Dhaka' },
         { value: 'Chattagram', label: 'Chattagram' },
         { value: 'Rangpur', label: 'Rangpur' },
@@ -37,65 +41,106 @@ const Biodatas = () => {
         { value: 'Khulna', label: 'Khulna' },
         { value: 'Mymensingh', label: 'Mymensingh' },
         { value: 'Sylhet', label: 'Sylhet' }
-      ];
+    ];
+
+    // Animation Variants
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        show: {
+            opacity: 1,
+            transition: { staggerChildren: 0.1 }
+        }
+    };
+
+    const itemVariants = {
+        hidden: { opacity: 0, y: 30, scale: 0.95 },
+        show: { opacity: 1, y: 0, scale: 1, transition: { type: "spring", stiffness: 100 } }
+    };
 
     return (
-        <div className="">
-            <div className="bg-[url(https://i.ibb.co.com/60h84M9Q/biodatas-banner.webp)] xl:[background-position:center_24%] relative w-screen xl:h-96 overflow-hidden bg-no-repeat bg-cover bg-fixed top-0">
-                <div className="absolute inset-0 bg-gradient-to-b from-white/50 via-white/25 to-black/10" />
-                <Navbar></Navbar>
-                <div className="pt-24 pb-5 xl:pt-32 md:w-full w-3/4 mx-auto text-center z-50">
-                    <Heading>Biodatas</Heading>
-                    <SubHeading>Explore the beauty of relationships as you navigate through a space</SubHeading>
-            </div>
-            </div>
-            <div className="pb-52 flex">
-                <div className="w-60 lg:block hidden shadow-lg border-t-4 border-teal h-screen p-4">
-                    <h1 className="my-5 text-center text-xl font-bold border-l-teal border-l-4 w-fit pl-2">Filter Biodatas</h1>
-                    <p className="mt-10 text-sm mb-3">Age (Min to Max)</p>
-                    <Slider onAfterChange={onAfterChange} range={{draggableTrack: true}} defaultValue={[18, 40]} max={40} min={18}/>
-                    <p className="mt-10 text-sm mb-3">Permanent Location</p>
-                    <Select placeholder="Division" onChange={(value)=>setLocation(value)} options={locations} className="w-52 mb-10"/>
-                    <p className="text-sm mb-2">Biodata Type</p>
-                    <Radio.Group onChange={e=>setType(e.target.value)} value={type}>
-                        <Radio value={'Male'}>Male</Radio>
-                        <Radio value={'Female'}>Female</Radio>
-                        <Radio value={''}>All</Radio>
-                    </Radio.Group>
+        <div className="font-Nunito bg-gray min-h-screen selection:bg-teal selection:text-white">
+            
+            {/* Cinematic Hero Section */}
+            <div className="relative w-full h-[60vh] md:h-[70vh] overflow-hidden bg-black flex items-center justify-center">
+                <div className="absolute top-0 left-0 w-full z-50">
+                    <Navbar />
                 </div>
-                <div className="text-center mt-8 mx-auto">
-                    <div className="shadow lg:hidden rounded-xl mx-4 grid grid-cols-2 md:grid-cols-3 p-5 gap-y-5 place-items-center align-middle ">
-                        <div className="h-fit">
-                            <p className="text-sm">Age (Min to Max)</p>
-                            <Slider onAfterChange={onAfterChange} range={{draggableTrack: true}} defaultValue={[18, 40]} max={40} min={18}/>
-                        </div>
-                        <div className="h-fit">
-                            <p className="text-sm mb-1">Permanent Location</p>
-                            <Select placeholder="Division" onChange={(value)=>setLocation(value)} options={locations} className="w-36 h-7"/>
-                        </div>
-                        <div className="h-fit col-span-full md:col-auto">
-                            <p className="text-sm mb-1">Biodata Type</p>
-                            <Radio.Group onChange={e=>setType(e.target.value)} value={type}>
-                                <Radio value={'Male'}>Male</Radio>
-                                <Radio value={'Female'}>Female</Radio>
-                                <Radio value={''}>All</Radio>
-                            </Radio.Group>
-                        </div>
-                    </div>
-                    <div className="flex gap-16 flex-wrap justify-center mx-auto tex-center items-center">
-                        {
-                            !isPending ? biodatas?.data?.length ? biodatas?.data?.map(biodata=><BiodataCard key={biodata._id} biodata={biodata}></BiodataCard>) 
-                            :
-                            <div>
-                                <PiSealWarningFill className="w-fit mx-auto text-8xl text-teal mb-5"/>
-                                <p>No Biodata Available!</p>
-                            </div> 
-                            :
-                            <Loader width='52'></Loader>
-                        }
-                    </div>
+                <div className="absolute inset-0 w-full h-full bg-fixed bg-cover bg-center" style={{ backgroundImage: "url('https://i.ibb.co.com/60h84M9Q/biodatas-banner.webp')" }}>
+                    <div className="absolute inset-0 bg-gradient-to-b from-dark-blue/80 via-teal/50 to-gray z-10 mix-blend-multiply" />
                 </div>
+                
+                <motion.div 
+                    initial={{ opacity: 0, y: 50 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
+                    className="relative z-20 text-center px-4 w-full max-w-4xl"
+                >
+                    <h1 className="text-5xl md:text-7xl font-extrabold text-white drop-shadow-2xl tracking-tighter mb-4">
+                        Discover <span className="text-light-teal italic">Connections</span>
+                    </h1>
+                    <p className="text-lg md:text-2xl text-white/90 font-light tracking-wide drop-shadow-md">
+                        Explore the beauty of relationships as you navigate through our curated space.
+                    </p>
+                </motion.div>
+            </div>
+
+            {/* Main Content Layout */}
+            <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20 flex flex-col lg:flex-row gap-8 relative z-30 -mt-8 lg:-mt-52">
+                
+                {/* Modernized Interactive Filter Sidebar */}
+                <BiodataFilterSidebar 
+                    type={type} setType={setType}
+                    minAge={minAge} setMinAge={setMinAge}
+                    maxAge={maxAge} setMaxAge={setMaxAge}
+                    location={location} setLocation={setLocation}
+                    activeFiltersCount={activeFiltersCount}
+                    locations={locations}
+                />
+
+                {/* Profiles Grid Area */}
+                <main className="flex-1 min-h-[50vh]">
+                    {isPending ? (
+                        <div className="w-full h-full flex items-center justify-center py-20">
+                            <motion.div animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 2, ease: "linear" }}>
+                                <Loader width='80' />
+                            </motion.div>
+                        </div>
+                    ) : biodatas?.data?.length > 0 ? (
+                        <motion.div 
+                            key={`${type}-${location}-${minAge}-${maxAge}`}
+                            variants={containerVariants}
+                            initial="hidden"
+                            whileInView="show"
+                            viewport={{ once: true, margin: "-50px" }}
+                            className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8 auto-rows-max"
+                        >
+                            {biodatas.data.map((biodata, index) => (
+                                <motion.div 
+                                    key={biodata._id} 
+                                    variants={itemVariants}
+                                    whileHover={{ y: -2, scale: 1.01 }}
+                                    transition={{ type: "spring", stiffness: 100, damping: 500 }}
+                                    className="h-full"
+                                >
+                                    <BiodataCard biodata={biodata} index={index} />
+                                </motion.div>
+                            ))}
+                        </motion.div>
+                    ) : (
+                        <motion.div 
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            className="bg-white/50 backdrop-blur-md rounded-3xl p-12 text-center border border-white shadow-xl mt-10"
+                        >
+                            <PiSealWarningFill className="w-24 h-24 mx-auto text-teal/40 mb-6 drop-shadow-sm"/>
+                            <h3 className="text-2xl font-bold text-dark-blue mb-2">No Profiles Found</h3>
+                            <p className="text-black/60 font-medium">Try adjusting your filters to discover more matches.</p>
+                        </motion.div>
+                    )}
+                </main>
             </div>
         </div>
-    )}
+    );
+};
+
 export default Biodatas;

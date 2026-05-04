@@ -21,6 +21,7 @@
     "axios": "^1.6.1",
     "date-fns": "^3.0.6",
     "firebase": "^10.14.1",
+    "framer-motion": "^12.38.0",
     "localforage": "^1.10.0",
     "lottie-react": "^2.4.0",
     "match-sorter": "^6.3.1",
