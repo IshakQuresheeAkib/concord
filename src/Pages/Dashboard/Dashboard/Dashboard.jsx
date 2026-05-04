@@ -1,15 +1,14 @@
 import { EditOutlined, FolderViewOutlined, HomeOutlined, InteractionOutlined, PullRequestOutlined, SafetyOutlined, TeamOutlined, } from "@ant-design/icons";
-import { NavLink, Outlet } from "react-router-dom";
-import { LogoutOutlined } from "@ant-design/icons";
+import { Outlet } from "react-router-dom";
 import './Dashboard.css'
 import useAdmin from "../../../hook/useAdmin";
 import useUserBiodata from "../../../hook/useUserBiodata";
 import { RiShieldStarLine } from "react-icons/ri";
-import PrimaryBtn from "../../../Components/Button/PrimaryBtn";
 import useAuth from "../../../hook/useAuth";
 import { enqueueSnackbar } from "notistack";
 import { stack as Menu } from 'react-burger-menu'
 import '../../Shared/Navbar/navbar.css'
+import DashboardMenu from "./DashboardMenu";
 
 const Dashboard = () => {
 
@@ -17,7 +16,6 @@ const Dashboard = () => {
     const [isAdmin] = useAdmin();
     const [userBiodata] = useUserBiodata() || [];
 
-    const {displayName,email,photoURL} = user || {}
     const {BiodataId} = userBiodata || {};
 
     const navbarItems1 = [
@@ -43,73 +41,29 @@ const Dashboard = () => {
     }
 
     return (
-        <div className="font-poppins antialiased">
+        <div className="font-poppins antialiased bg-gray-50/50">
             <div className="h-full flex flex-row">                
-                <div className="bg-white lg:block hidden min-h-screen max-w-screen-2xl shadow-xl px-3 w-72 overflow-x-hidden transition-transform duration-300 ease-in-out">
-                    <div className="space-y-10 mt-10">
-                        {<div id="profile" className="space-y-3">
-                            <img src={photoURL} alt="Avatar user"
-                            className="w-10 md:w-28 md:h-28 rounded-full mx-auto object-cover"
-                            />
-                            <div>
-                            <h2
-                                className="font-medium text-xs md:text-sm text-center text-teal-500"
-                            >
-                                {displayName}
-                            </h2>
-                            <p className="text-xs text-gray-500 text-center">{email}</p>
-                            </div>
-                        </div>}
-                        <div className="flex flex-col space-y-2 dashboard">
-                            
-                            {
-                                isAdmin ? 
-                                navbarItems2?.map(navItem=>(
-                                    <NavLink key={navItem.id} to={navItem.link} className="font-medium text-lg flex items-center gap-2 py-2 px-2 hover:bg-teal hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out">
-                                    {navItem.icon}
-                                    <p>{navItem.title}</p>
-                                    </NavLink>
-                                ))
-                                : 
-                                navbarItems1?.map(navItem=>(
-                                <NavLink key={navItem.id} to={navItem.link} className="font-medium text-lg flex items-center gap-2 py-2 px-2 hover:bg-teal hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out">
-                                {navItem.icon}
-                                <p>{navItem.title}</p>
-                                </NavLink>
-                                ))
-                            }
-                            <div onClick={handleLogin} className="pt-6">
-                                    <PrimaryBtn data='Log Out' icon={<LogoutOutlined />}>                 
-                                    </PrimaryBtn>
-                            </div>
-                        </div>
-                    </div>
+                <div className="lg:block hidden min-h-screen w-72 lg:w-80 shrink-0 z-10 sticky top-0 h-screen">
+                    <DashboardMenu 
+                        isAdmin={isAdmin}
+                        navbarItems1={navbarItems1}
+                        navbarItems2={navbarItems2}
+                        user={user}
+                        handleLogin={handleLogin}
+                    />
                 </div>
-                <div className="flex-1 2xl:mx-0 md:mx-5"><Outlet></Outlet></div>
+                <div className="flex-1 2xl:mx-0 md:mx-6 my-6"><Outlet></Outlet></div>
             </div>
-            <div className="lg:hidden z-50 top-10 menu ">
-                <Menu className="min-h-screen" >
-                    <div className="flex flex-col space-y-2 mt-5 dashboard">                        
-                        {
-                            isAdmin ? 
-                            navbarItems2?.map(navItem=>(
-                                <NavLink key={navItem.id} to={navItem.link} className="font-medium text-lg  flex items-center gap-2 py-2 px-2 hover:bg-teal hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out">
-                                {navItem.icon}
-                                <p>{navItem.title}</p>
-                                </NavLink>
-                            ))
-                            : 
-                            navbarItems1?.map(navItem=>(
-                            <NavLink key={navItem.id} to={navItem.link} className="font-medium text-lg flex items-center gap-2 py-2 px-2 hover:bg-teal hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out">
-                            {navItem.icon}
-                            <p>{navItem.title}</p>
-                            </NavLink>
-                            ))
-                        }
-                        <div onClick={handleLogin} className="pt-6">
-                                <PrimaryBtn data='Log Out' icon={<LogoutOutlined />}>                 
-                                </PrimaryBtn>
-                        </div>
+            <div className="lg:hidden z-[100] top-0 menu fixed">
+                <Menu className="min-h-screen border-r border-teal-500/20" width={320}>
+                    <div className="h-full bg-white/95">
+                        <DashboardMenu 
+                            isAdmin={isAdmin}
+                            navbarItems1={navbarItems1}
+                            navbarItems2={navbarItems2}
+                            user={user}
+                            handleLogin={handleLogin}
+                        />
                     </div>
                 </Menu>
             </div>
