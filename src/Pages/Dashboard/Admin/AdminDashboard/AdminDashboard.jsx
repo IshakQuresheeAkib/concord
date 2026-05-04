@@ -14,23 +14,23 @@ const StatCard = ({ title, value, icon: Icon, delay, color }) => (
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay }}
-        className="relative overflow-hidden bg-white/70 backdrop-blur-xl p-6 rounded-3xl border border-white shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_40px_rgb(0,128,128,0.12)] transition-all duration-300"
+        className="relative overflow-hidden bg-white/70 backdrop-blur-xl p-4 xl:p-6 rounded-2xl lg:rounded-3xl border border-white shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_40px_rgb(0,128,128,0.12)] transition-all duration-300"
     >
         <div className="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-gradient-to-br from-white/40 to-white/0 rounded-full blur-2xl z-0" />
         <div className="relative z-10 flex items-start justify-between">
             <div>
-                <p className="text-sm font-bold text-dark-blue/60 tracking-wider mb-2">{title}</p>
+                <p className="text-xs xl:text-sm font-bold text-dark-blue/60 tracking-wider mb-1 xl:mb-2">{title}</p>
                 <motion.h3 
                     initial={{ scale: 0.5, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
                     transition={{ type: "spring", stiffness: 100, delay: delay + 0.2 }}
-                    className="text-4xl font-extrabold text-dark-blue"
+                    className="text-3xl xl:text-4xl font-extrabold text-dark-blue"
                 >
                     {value || 0}
                 </motion.h3>
             </div>
-            <div className={`p-4 rounded-2xl ${color}`}>
-                <Icon size={24} className="stroke-[2.5]" />
+            <div className={`p-3 xl:p-4 rounded-xl xl:rounded-2xl ${color}`}>
+                <Icon className="w-5 h-5 xl:w-6 xl:h-6 stroke-[2.5]" />
             </div>
         </div>
     </motion.div>
@@ -48,7 +48,7 @@ const AdminDashboard = () => {
 
     if (isLoading) {
         return (
-            <div className="h-[80vh] flex justify-center items-center">
+            <div className="h-full flex justify-center items-center">
                 <Loader width='80' />
             </div>
         );
@@ -80,25 +80,25 @@ const AdminDashboard = () => {
     };
 
     return (
-        <div className="font-Nunito min-h-screen bg-gray/30 p-6 md:p-10 lg:p-14">
+        <div className="font-Nunito h-full flex flex-col gap-4 lg:gap-6 2xl:gap-8">
             
             {/* Header Section */}
             <motion.div 
                 initial={{ opacity: 0, x: -30 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
-                className="mb-12"
+                className="shrink-0"
             >
-                <h1 className="text-4xl md:text-5xl font-extrabold text-dark-blue tracking-tight mb-2">
+                <h1 className="text-2xl md:text-3xl lg:text-4xl 2xl:text-5xl font-extrabold text-dark-blue tracking-tight mb-1 md:mb-2">
                     Platform <span className="text-teal italic">Overview</span>
                 </h1>
-                <p className="text-dark-blue/60 font-bold tracking-wide">
+                <p className="text-dark-blue/60 font-bold tracking-wide text-xs md:text-sm 2xl:text-base">
                     Real-time metrics and analytics for Concord.
                 </p>
             </motion.div>
 
             {/* Top Stat Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4 2xl:gap-6 shrink-0">
                 <StatCard 
                     title="TOTAL PROFILES" 
                     value={totalBiodata} 
@@ -134,23 +134,23 @@ const AdminDashboard = () => {
                 variants={containerVariants}
                 initial="hidden"
                 animate="show"
-                className="grid grid-cols-1 lg:grid-cols-3 gap-8"
+                className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-6 2xl:gap-8 flex-1 min-h-[450px] lg:min-h-0"
             >
                 {/* Gender Split Chart */}
                 <motion.div 
                     variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}
-                    className="lg:col-span-1 bg-white/80 backdrop-blur-2xl p-8 rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-white flex flex-col items-center justify-center transform transition-transform hover:-translate-y-1 duration-500"
+                    className="lg:col-span-1 bg-white/80 backdrop-blur-2xl p-4 xl:p-6 2xl:p-8 rounded-[1.5rem] xl:rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-white flex flex-col items-center justify-center transform transition-transform hover:-translate-y-1 duration-500 min-h-[200px] lg:min-h-0 h-full"
                 >
-                    <h3 className="w-full text-lg font-extrabold text-dark-blue tracking-wide mb-6">Gender Distribution</h3>
-                    <div className="w-full h-[300px]">
+                    <h3 className="w-full text-base xl:text-lg font-extrabold text-dark-blue tracking-wide mb-2 xl:mb-6 shrink-0">Gender Distribution</h3>
+                    <div className="w-full flex-1 min-h-0">
                         <ResponsiveContainer width="100%" height="100%">
                             <PieChart>
                                 <Pie
                                     data={genderData}
                                     cx="50%"
                                     cy="50%"
-                                    innerRadius={70}
-                                    outerRadius={100}
+                                    innerRadius="60%"
+                                    outerRadius="90%"
                                     paddingAngle={5}
                                     dataKey="value"
                                 >
@@ -162,7 +162,7 @@ const AdminDashboard = () => {
                                     contentStyle={{ borderRadius: '16px', border: 'none', boxShadow: '0 10px 25px rgba(0,0,0,0.1)', fontWeight: 'bold' }}
                                     itemStyle={{ color: '#067eaa' }}
                                 />
-                                <Legend verticalAlign="bottom" height={36} iconType="circle" />
+                                <Legend verticalAlign="bottom" height={36} iconType="circle" wrapperStyle={{ fontSize: '12px' }} />
                             </PieChart>
                         </ResponsiveContainer>
                     </div>
@@ -171,13 +171,13 @@ const AdminDashboard = () => {
                 {/* Premium Ratio Chart */}
                 <motion.div 
                     variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}
-                    className="lg:col-span-2 bg-white/80 backdrop-blur-2xl p-8 rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-white transform transition-transform hover:-translate-y-1 duration-500"
+                    className="lg:col-span-2 bg-white/80 backdrop-blur-2xl p-4 xl:p-6 2xl:p-8 rounded-[1.5rem] xl:rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-white transform transition-transform hover:-translate-y-1 duration-500 flex flex-col min-h-[250px] lg:min-h-0 h-full"
                 >
-                    <div className="flex justify-between items-center mb-6">
-                        <h3 className="text-lg font-extrabold text-dark-blue tracking-wide">Account Tiers</h3>
-                        <div className="px-4 py-1.5 bg-teal/5 text-teal text-xs font-bold rounded-full border border-teal/10">Overview</div>
+                    <div className="flex justify-between items-center mb-2 xl:mb-6 shrink-0">
+                        <h3 className="text-base xl:text-lg font-extrabold text-dark-blue tracking-wide">Account Tiers</h3>
+                        <div className="px-3 xl:px-4 py-1 xl:py-1.5 bg-teal/5 text-teal text-[10px] xl:text-xs font-bold rounded-full border border-teal/10">Overview</div>
                     </div>
-                    <div className="w-full h-[300px]">
+                    <div className="w-full flex-1 min-h-0">
                         <ResponsiveContainer width="100%" height="100%">
                             <BarChart
                                 data={distributionData}
@@ -188,13 +188,13 @@ const AdminDashboard = () => {
                                     dataKey="name" 
                                     axisLine={false} 
                                     tickLine={false} 
-                                    tick={{ fill: '#067eaa', fontWeight: 700, fontSize: 14 }} 
+                                    tick={{ fill: '#067eaa', fontWeight: 700, fontSize: 12 }} 
                                     dy={10}
                                 />
                                 <YAxis 
                                     axisLine={false} 
                                     tickLine={false} 
-                                    tick={{ fill: '#9CA3AF', fontWeight: 600 }}
+                                    tick={{ fill: '#9CA3AF', fontWeight: 600, fontSize: 12 }}
                                 />
                                 <Tooltip 
                                     cursor={{ fill: 'rgba(0,128,128,0.05)' }} 
