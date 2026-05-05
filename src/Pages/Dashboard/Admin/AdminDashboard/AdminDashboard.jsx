@@ -14,7 +14,7 @@ const StatCard = ({ title, value, icon: Icon, delay, color }) => (
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay }}
-        className="relative overflow-hidden bg-white/70 backdrop-blur-xl p-4 xl:p-6 rounded-2xl lg:rounded-3xl border border-white shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_40px_rgb(0,128,128,0.12)] transition-all duration-300"
+        className="relative overflow-hidden bg-white/70 backdrop-blur-xl p-5 xl:p-6 rounded-2xl lg:rounded-3xl border border-white shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_40px_rgb(0,128,128,0.12)] transition-all duration-300"
     >
         <div className="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-gradient-to-br from-white/40 to-white/0 rounded-full blur-2xl z-0" />
         <div className="relative z-10 flex items-start justify-between">
@@ -48,7 +48,7 @@ const AdminDashboard = () => {
 
     if (isLoading) {
         return (
-            <div className="h-full flex justify-center items-center">
+            <div className="min-h-full flex justify-center items-center">
                 <Loader width='80' />
             </div>
         );
@@ -80,10 +80,10 @@ const AdminDashboard = () => {
     };
 
     return (
-        <div className="font-Nunito h-full flex flex-col gap-4 lg:gap-6 2xl:gap-8">
+        <div className="font-Nunito min-h-full flex flex-col gap-5 lg:gap-6 2xl:gap-8 pb-4">
             
             {/* Header Section */}
-            <motion.div 
+            <motion.header 
                 initial={{ opacity: 0, x: -30 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
@@ -95,53 +95,29 @@ const AdminDashboard = () => {
                 <p className="text-dark-blue/60 font-bold tracking-wide text-xs md:text-sm 2xl:text-base">
                     Real-time metrics and analytics for Concord.
                 </p>
-            </motion.div>
+            </motion.header>
 
             {/* Top Stat Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4 2xl:gap-6 shrink-0">
-                <StatCard 
-                    title="TOTAL PROFILES" 
-                    value={totalBiodata} 
-                    icon={FiUsers} 
-                    delay={0.1} 
-                    color="bg-teal/10 text-teal" 
-                />
-                <StatCard 
-                    title="MALE PROFILES" 
-                    value={maleBiodata} 
-                    icon={FiUserPlus} 
-                    delay={0.2} 
-                    color="bg-[#00C4C4]/10 text-light-teal" 
-                />
-                <StatCard 
-                    title="FEMALE PROFILES" 
-                    value={femaleBiodata} 
-                    icon={FiUserPlus} 
-                    delay={0.3} 
-                    color="bg-dark-blue/10 text-dark-blue" 
-                />
-                <StatCard 
-                    title="PREMIUM USERS" 
-                    value={premiumBiodata} 
-                    icon={FiStar} 
-                    delay={0.4} 
-                    color="bg-yellow-500/10 text-yellow-600" 
-                />
-            </div>
+            <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 2xl:gap-6 shrink-0">
+                <StatCard title="TOTAL PROFILES" value={totalBiodata} icon={FiUsers} delay={0.1} color="bg-teal/10 text-teal" />
+                <StatCard title="MALE PROFILES" value={maleBiodata} icon={FiUserPlus} delay={0.2} color="bg-[#00C4C4]/10 text-light-teal" />
+                <StatCard title="FEMALE PROFILES" value={femaleBiodata} icon={FiUserPlus} delay={0.3} color="bg-dark-blue/10 text-dark-blue" />
+                <StatCard title="PREMIUM USERS" value={premiumBiodata} icon={FiStar} delay={0.4} color="bg-yellow-500/10 text-yellow-600" />
+            </section>
 
             {/* Charts Area - Bento Box Layout */}
-            <motion.div 
+            <motion.section 
                 variants={containerVariants}
                 initial="hidden"
                 animate="show"
-                className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-6 2xl:gap-8 flex-1 min-h-[450px] lg:min-h-0"
+                className="grid grid-cols-1 lg:grid-cols-3 gap-5 lg:gap-6 2xl:gap-8 flex-1"
             >
                 {/* Gender Split Chart */}
                 <motion.div 
                     variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}
-                    className="lg:col-span-1 bg-white/80 backdrop-blur-2xl p-4 xl:p-6 2xl:p-8 rounded-[1.5rem] xl:rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-white flex flex-col items-center justify-center transform transition-transform hover:-translate-y-1 duration-500 min-h-[200px] lg:min-h-0 h-full"
+                    className="lg:col-span-1 bg-white/80 backdrop-blur-2xl p-5 xl:p-6 2xl:p-8 rounded-[1.5rem] xl:rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-white flex flex-col items-center justify-center transform transition-transform hover:-translate-y-1 duration-500 min-h-[300px] lg:min-h-0 h-full"
                 >
-                    <h3 className="w-full text-base xl:text-lg font-extrabold text-dark-blue tracking-wide mb-2 xl:mb-6 shrink-0">Gender Distribution</h3>
+                    <h3 className="w-full text-base xl:text-lg font-extrabold text-dark-blue tracking-wide mb-4 xl:mb-6 shrink-0 text-center lg:text-left">Gender Distribution</h3>
                     <div className="w-full flex-1 min-h-0">
                         <ResponsiveContainer width="100%" height="100%">
                             <PieChart>
@@ -171,9 +147,9 @@ const AdminDashboard = () => {
                 {/* Premium Ratio Chart */}
                 <motion.div 
                     variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}
-                    className="lg:col-span-2 bg-white/80 backdrop-blur-2xl p-4 xl:p-6 2xl:p-8 rounded-[1.5rem] xl:rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-white transform transition-transform hover:-translate-y-1 duration-500 flex flex-col min-h-[250px] lg:min-h-0 h-full"
+                    className="lg:col-span-2 bg-white/80 backdrop-blur-2xl p-5 xl:p-6 2xl:p-8 rounded-[1.5rem] xl:rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-white transform transition-transform hover:-translate-y-1 duration-500 flex flex-col min-h-[350px] lg:min-h-0 h-full"
                 >
-                    <div className="flex justify-between items-center mb-2 xl:mb-6 shrink-0">
+                    <div className="flex justify-between items-center mb-4 xl:mb-6 shrink-0">
                         <h3 className="text-base xl:text-lg font-extrabold text-dark-blue tracking-wide">Account Tiers</h3>
                         <div className="px-3 xl:px-4 py-1 xl:py-1.5 bg-teal/5 text-teal text-[10px] xl:text-xs font-bold rounded-full border border-teal/10">Overview</div>
                     </div>
@@ -215,7 +191,7 @@ const AdminDashboard = () => {
                     </div>
                 </motion.div>
 
-            </motion.div>
+            </motion.section>
         </div>
     );
 };

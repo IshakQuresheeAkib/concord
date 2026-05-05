@@ -26,4 +26,5 @@ dist-ssr
 # Project Documentation (Private - Not for GitHub)
 PROJECT_DOCUMENTATION.md
 COPILOT_README.md
+design.md
 .github
