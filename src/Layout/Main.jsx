@@ -6,7 +6,7 @@ import Biodatas from "../Pages/Biodatas/Biodatas";
 import useAuth from "../hook/useAuth";
 import Loader from "../Components/Loader/Loader";
 import { useEffect, useState } from "react";
-import concord from '../../public/ConcordLogo.png'
+import concord from '/ConcordLogo.png'
 
 const Main = () => {
 

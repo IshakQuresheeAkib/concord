@@ -1,14 +1,13 @@
-import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import './Dashboard.css';
 import '../../Shared/Navbar/navbar.css';
 import DashboardMenu from "./DashboardMenu";
-import concord from '../../../assets/concord.png';
+import Logo from "../../../Components/Logo/Logo";
 
 const Dashboard = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const location = useLocation();
-    const navigate = useNavigate();
 
     const toggleMenu = () => {
         setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -48,13 +47,7 @@ const Dashboard = () => {
                 
                 {/* Site Logo */}
                 <div className="relative z-10 flex items-center">
-                   <button 
-                       onClick={() => navigate('/')}
-                       aria-label="Go to Homepage"
-                       className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-lg flex items-center"
-                   >
-                       <img loading="lazy" src={concord} alt="Concord Logo" className="w-[124px] sm:w-[145px] hover:scale-105 transition-transform duration-300 drop-shadow-sm" />
-                   </button>
+                   <Logo/>
                 </div>
 
                 {/* Animated Retro-Futuristic Hamburger Button */}

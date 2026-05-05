@@ -2,13 +2,12 @@ import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import useAuth from '../../../hook/useAuth'
 import useAdmin from '../../../hook/useAdmin'
 import { enqueueSnackbar } from 'notistack';
-import PrimaryBtn from '../../../Components/Button/PrimaryBtn'
-import concord from '../../../assets/concord.png'
-import { LogoutOutlined, AppstoreOutlined } from "@ant-design/icons";
+import Logo from '../../../Components/Logo/Logo';
+import { LogoutOutlined, AppstoreOutlined, UserOutlined } from "@ant-design/icons";
 import { useEffect, useState } from "react";
-import UserDropdown from "./UserDropdown";
 import Loader from '../../../Components/Loader/Loader'
 import { motion, AnimatePresence } from "framer-motion";
+import UserDropdown from "./UserDropdown";
 
 const Navbar = () => {
     const { user, logOut, loading } = useAuth()
@@ -52,18 +51,12 @@ const Navbar = () => {
         <header className="fixed top-0 w-full z-50 flex justify-center pointer-events-none transition-all duration-300">
             <motion.nav 
                 layout
-                className={`pointer-events-auto flex items-center justify-between w-full max-w-screen  transition-all duration-500 ease-out ${
+                className={`pointer-events-auto flex items-center justify-between w-full max-w-screen transition-all duration-500 ease-out ${
                     scrolled ? "bg-white/30 backdrop-blur-lg shadow-xl shadow-teal/10 py-1 px-6" : "bg-transparent py-2 px-2 lg:px-5"
                 }`}
             >
                 {/* Logo */}
-                <button 
-                    onClick={() => navigate('/')}
-                    aria-label="Go to Homepage"
-                    className="flex items-center hover:scale-105 transition-transform duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4 rounded-lg"
-                >
-                    <img loading="lazy" src={concord} alt="Concord Logo" className="w-36 lg:w-44 cursor-pointer" />
-                </button>
+                <Logo/>
 
                 {/* Desktop Navigation */}
                 <div className="hidden lg:flex items-center space-x-2 bg-white/10 backdrop-blur-3xl p-1.5 rounded-xl shadow-lg shadow-black/10">
@@ -90,32 +83,13 @@ const Navbar = () => {
                     })}
                 </div>
 
-                {/* Right Actions */}
-                <div className="hidden lg:flex items-center space-x-4">
-                    {loading ? (
-                        <div className="w-16 h-16 flex items-center justify-center"><Loader width='28' height='true' /></div>
-                    ) : user ? (
-                        <>
-                            <NavLink
-                                to={dashboardLink}
-                                className="relative overflow-hidden group flex items-center gap-2 bg-gradient-to-br from-teal to-dark-blue text-white px-5 py-2.5 rounded-xl font-bold tracking-wider shadow-[0_4px_15px_rgba(0,128,128,0.4)] hover:shadow-[0_6px_25px_rgba(0,196,196,0.6)] transition-all duration-300 transform hover:-translate-y-0.5 border border-light-teal/30"
-                            >
-                                <div className="absolute inset-0 w-12 bg-white/20 transform -skew-x-12 -translate-x-full group-hover:translate-x-[400%] transition-transform duration-700 ease-in-out"></div>
-                                <AppstoreOutlined className="text-lg drop-shadow-md z-10 group-hover:animate-pulse" />
-                                <span className="relative z-10">Dashboard</span>
-                            </NavLink>
-                            <UserDropdown photoURL={user?.photoURL} displayName={user?.displayName} handleLogin={handleLogin} />
-                        </>
-                    ) : (
-                        <button 
-                            onClick={handleLogin} 
-                            className="hover:scale-105 transition-transform duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 rounded-lg"
-                            aria-label="Log In"
-                        >
-                            <PrimaryBtn data='Log In' icon={<LogoutOutlined />} />
-                        </button>
-                    )}
-                </div>
+                {/* Right Actions - Sleek User Menu */}
+                <UserDropdown 
+                    user={user} 
+                    loading={loading} 
+                    handleLogin={handleLogin} 
+                    dashboardLink={dashboardLink} 
+                />
 
                 {/* Mobile Menu Toggle*/}
                 <div className="lg:hidden flex items-center">
@@ -187,8 +161,17 @@ const Navbar = () => {
                                         initial={{ opacity: 0, y: 10 }}
                                         animate={{ opacity: 1, y: 0 }}
                                         transition={{ delay: 0.1 }}
-                                        className="w-full pt-3"
+                                        className="w-full pt-3 flex flex-col gap-2"
                                     >
+                                        <NavLink
+                                            to="/profile"
+                                            onClick={() => setMobileMenuOpen(false)}
+                                            className="relative overflow-hidden group flex items-center justify-center gap-3 bg-white/50 text-teal py-3 px-4 rounded-xl font-bold tracking-widest border border-teal/20 hover:bg-teal/10 transition-all duration-300"
+                                        >
+                                            <UserOutlined className="text-lg z-10" />
+                                            <span className="relative z-10">MY PROFILE</span>
+                                        </NavLink>
+
                                         <NavLink
                                             to={dashboardLink}
                                             onClick={() => setMobileMenuOpen(false)}
@@ -198,6 +181,14 @@ const Navbar = () => {
                                             <AppstoreOutlined className="text-xl drop-shadow-lg z-10 animate-pulse" />
                                             <span className="relative z-10 glow-text">DASHBOARD</span>
                                         </NavLink>
+                                        
+                                        <button 
+                                            onClick={handleLogin}
+                                            className="w-full relative overflow-hidden group flex items-center justify-center gap-2 bg-red-50 text-red-600 py-3 px-4 rounded-xl font-bold tracking-wide border border-red-200 active:scale-95 transition-all duration-300"
+                                        >
+                                            <LogoutOutlined className="text-lg" />
+                                            <span>SIGN OUT</span>
+                                        </button>
                                     </motion.div>
                                 </div>
                             )}
