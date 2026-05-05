@@ -1,22 +1,23 @@
-import { NavLink, useNavigate, useLocation } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import useAuth from '../../../hook/useAuth'
 import useAdmin from '../../../hook/useAdmin'
 import { enqueueSnackbar } from 'notistack';
 import Logo from '../../../Components/Logo/Logo';
 import { useEffect, useState } from "react";
-import { motion, LayoutGroup, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import UserDropdown from "./UserDropdown";
 import { navItems } from '../../../utils/constants';
-import { MobileMenuToggle, MobileMenuOverlay } from './MobileMenu';
+import { MenuToggleIcon, SharedMobileMenu } from './MobileMenu';
+import { LogoutOutlined, AppstoreOutlined } from "@ant-design/icons";
+import PrimaryBtn from "../../../Components/Button/PrimaryBtn";
+import DesktopNav from "./DesktopNav";
 
 const Navbar = () => {
     const { user, logOut, loading } = useAuth()
     const [isAdmin] = useAdmin()
     const navigate = useNavigate();   
-    const location = useLocation();
     const [scrolled, setScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-    const [hoveredPath, setHoveredPath] = useState(null);
 
     const dashboardLink = `/dashboard/${!isAdmin ? 'edit' : 'admin/admin-dashboard'}`;
 
@@ -53,57 +54,61 @@ const Navbar = () => {
                 <Logo/>
 
                 {/* Desktop Navigation */}
-                <div className="hidden lg:flex items-center space-x-1 bg-white/10 backdrop-blur-3xl p-1.5 rounded-xl shadow-lg shadow-black/10 border border-black/5 overflow-hidden">
-                    <LayoutGroup>
-                        <AnimatePresence>
-                            {navItems.map((item) => {
-                                const isActive = location.pathname === item.link;
-                                return (
-                                    <NavLink 
-                                        key={item.id} 
-                                        to={item.link}
-                                        onMouseEnter={() => setHoveredPath(item.link)}
-                                        onMouseLeave={() => setHoveredPath(null)}
-                                        className={`relative px-5 py-2.5 rounded-lg font-bold tracking-widest text-sm transition-colors duration-300 ${
-                                            isActive ? "text-white" : "text-black/80 hover:text-teal"
-                                        }`}
-                                    >
-                                        {hoveredPath === item.link && !isActive && (
-                                            <motion.div
-                                                layoutId="navHover"
-                                                className="absolute inset-0 bg-gradient-to-br from-teal/10 to-teal/5 border border-teal/20 backdrop-blur-sm rounded-lg"
-                                                initial={{ opacity: 0, scale: 0.9, rotate: -5 }}
-                                                animate={{ opacity: 1, scale: 1, rotate: 0 }}
-                                                exit={{ opacity: 0, scale: 0.9, rotate: 5 }}
-                                                transition={{ type: "spring"}}
-                                            />
-                                        )}
-                                        {isActive && (
-                                            <motion.div
-                                                layoutId="activeTab"
-                                                className="absolute inset-0 bg-gradient-to-r from-teal to-light-teal shadow-[0_4px_15px_rgba(0,128,128,0.4)] border border-teal rounded-lg overflow-hidden"
-                                                transition={{ type: "spring", bounce: 0.1, duration: 0.1 }}
-                                            >
-                                                <div className="absolute -inset-2 bg-white/20 blur-md rounded-full animate-pulse opacity-50"></div>
-                                            </motion.div>
-                                        )}
-                                        <span className="relative z-10">{item.title}</span>
-                                    </NavLink>
-                                )
-                            })}
-                        </AnimatePresence>
-                    </LayoutGroup>
-                </div>
+                <DesktopNav />
 
                 <UserDropdown user={user} loading={loading} 
                     handleLogin={handleLogin} 
                     dashboardLink={dashboardLink} 
                 />
 
-                <MobileMenuToggle mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} />
+                <div className="lg:hidden">
+                    <MenuToggleIcon isOpen={mobileMenuOpen} onClick={() => setMobileMenuOpen(!mobileMenuOpen)} />
+                </div>
             </motion.nav>
 
-            <MobileMenuOverlay mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} />
+            {/* Mobile Menu Overlay */}
+            <SharedMobileMenu isOpen={mobileMenuOpen} setIsOpen={setMobileMenuOpen}>
+                <div className="flex flex-col items-center space-y-3 group shrink-0 relative z-10 px-6">
+                    {user && !loading ? (
+                        <>
+                            <div className="relative">
+                                <div className="absolute -inset-1 bg-gradient-to-r from-light-teal to-teal rounded-full blur opacity-40 group-hover:opacity-75 transition duration-500"></div>
+                                <img 
+                                    src={user.photoURL} 
+                                    alt="Avatar user"
+                                    className="relative w-20 h-20 rounded-full object-cover ring-2 ring-teal/50 ring-offset-4 ring-offset-white transition-transform duration-300 group-hover:scale-105"
+                                />
+                            </div>
+                            <div className="text-center relative">
+                                <h2 className="font-semibold text-base text-black/80 drop-shadow-sm line-clamp-1">{user.displayName}</h2>
+                                <p className="text-xs text-black/50 line-clamp-1">{user.email}</p>
+                            </div>                           
+                        </>
+                    ) : null}
+                </div>
+
+                <div className={`flex flex-col space-y-2 px-2 relative z-10 overflow-y-auto custom-scrollbar flex-1 pb-24`}>
+                    {navItems.map((item) => (
+                        <NavLink key={item.id}
+                                to={item.link}
+                                onClick={() => setMobileMenuOpen(false)}
+                                className={({ isActive }) => `relative group flex items-center gap-3 py-3 px-4 font-bold text-sm md:text-base rounded-xl transition-all duration-300 overflow-hidden shrink-0 ${isActive ? 'text-dark-blue bg-teal/10 border border-teal/30' : 'text-black/60 hover:text-teal hover:bg-gray/80'}`}
+                            >
+                                <div className="absolute inset-0 w-0 bg-gradient-to-r from-teal/10 to-transparent transition-all duration-500 ease-out group-hover:w-full -z-10"></div>
+                                <div className="absolute left-0 top-1/4 h-1/2 w-1 bg-light-teal opacity-0 transform -translate-x-full transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0 rounded-r-md"></div>
+                                <p className="tracking-wide group-hover:translate-x-1 transition-transform duration-300">{item.title}</p>
+                            </NavLink>
+                    ))}
+                    <div className="flex flex-col space-y-3">               
+                    
+                    <PrimaryBtn onClick={() => {
+                        setMobileMenuOpen(false);
+                        navigate(dashboardLink);
+                    }} data={'Dashboard'} icon={<AppstoreOutlined className="text-base xl:text-lg transition-transform duration-300" />}></PrimaryBtn>
+                    <PrimaryBtn onClick={handleLogin} data={'Logout'} icon={<LogoutOutlined className="text-base xl:text-lg transition-transform duration-300" />}></PrimaryBtn>
+                </div>
+                </div>
+            </SharedMobileMenu>
         </header>
     );
 };

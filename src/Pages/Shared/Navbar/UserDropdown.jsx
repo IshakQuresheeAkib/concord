@@ -67,15 +67,6 @@ const UserDropdown = ({ user, loading, handleLogin, dashboardLink }) => {
                                             </div>
                                             
                                             <NavLink
-                                                to="/profile"
-                                                onClick={() => setDesktopMenuOpen(false)}
-                                                className="flex items-center gap-3 px-4 py-3 mx-1 rounded-xl text-sm font-bold text-black/70 hover:bg-teal/10 hover:text-teal transition-all duration-200 group"
-                                            >
-                                                <UserOutlined className="text-lg group-hover:scale-110 transition-transform" />
-                                                <span>My Profile</span>
-                                            </NavLink>
-                                            
-                                            <NavLink
                                                 to={dashboardLink}
                                                 onClick={() => setDesktopMenuOpen(false)}
                                                 className="flex items-center gap-3 px-4 py-3 mx-1 rounded-xl text-sm font-bold text-black/70 hover:bg-teal/10 hover:text-teal transition-all duration-200 group"
@@ -94,7 +85,7 @@ const UserDropdown = ({ user, loading, handleLogin, dashboardLink }) => {
                                                 className="flex items-center gap-3 px-4 py-3 mx-1 rounded-xl text-sm font-bold text-red-500 hover:bg-red-50 transition-all duration-200 group w-full text-left"
                                             >
                                                 <LogoutOutlined className="text-lg group-hover:-translate-x-1 transition-transform" />
-                                                <span>Sign Out</span>
+                                                <span>Log Out</span>
                                             </button>
                                         </div>
                                     ) : (

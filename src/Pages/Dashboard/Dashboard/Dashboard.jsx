@@ -4,6 +4,7 @@ import './Dashboard.css';
 import '../../Shared/Navbar/navbar.css';
 import DashboardMenu from "./DashboardMenu";
 import Logo from "../../../Components/Logo/Logo";
+import { MenuToggleIcon, SharedMobileMenu } from '../../Shared/Navbar/MobileMenu';
 
 const Dashboard = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -40,32 +41,16 @@ const Dashboard = () => {
         <div className="font-Nunito antialiased bg-gray/30 h-[100dvh] w-full overflow-hidden flex flex-col lg:flex-row relative">
             
             {/* Mobile Header - Unified with Site Header */}
-            <header className="lg:hidden w-full h-[70px] bg-white/50 backdrop-blur-2xl border-b border-teal/10 z-[100] relative flex items-center justify-between px-4 sm:px-6 shadow-xl shadow-teal/5 transition-all duration-500 ease-out">
-                {/* Header Background Grid & Glow limited opacity for cleaner look like main site */}
-                <div className="absolute inset-0 bg-[linear-gradient(to_right,#00808008_1px,transparent_1px),linear-gradient(to_bottom,#00808008_1px,transparent_1px)] bg-[size:12px_12px] pointer-events-none"></div>
-                <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-teal to-transparent opacity-20 shadow-[0_0_5px_rgba(0,128,128,0.2)]"></div>
+            <header className="lg:hidden fixed top-0 w-full z-50 flex justify-center pointer-events-none transition-all duration-300">
                 
                 {/* Site Logo */}
                 <div className="relative z-10 flex items-center">
                    <Logo/>
                 </div>
 
-                <button 
-                    onClick={toggleMenu}
-                    className="relative z-10 flex items-center justify-center w-11 h-11 rounded-lg bg-teal/5 border border-teal/30 hover:bg-teal/10 hover:border-teal/50 hover:shadow-[0_0_15px_rgba(0,128,128,0.4)] transition-all duration-300 focus:outline-none group overflow-hidden"
-                    aria-label={isMobileMenuOpen ? "Close Menu" : "Open Menu"}
-                    aria-expanded={isMobileMenuOpen}
-                >
-                    {/* Glowing effect inside button */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-teal/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-
-                    {/* Lines container */}
-                    <div className="relative w-6 h-[18px] flex flex-col justify-between">
-                        <span className={`block w-full h-[2px] bg-teal rounded-full origin-center transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] shadow-[0_0_5px_rgba(0,128,128,0.6)] ${isMobileMenuOpen ? 'rotate-[45deg] translate-y-[8px] bg-light-teal' : ''}`}></span>
-                        <span className={`block w-full h-[2px] bg-teal rounded-full transition-all duration-300 ease-in-out shadow-[0_0_5px_rgba(0,128,128,0.6)] ${isMobileMenuOpen ? 'opacity-0 translate-x-4' : 'opacity-100'}`}></span>
-                        <span className={`block w-full h-[2px] bg-teal rounded-full origin-center transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] shadow-[0_0_5px_rgba(0,128,128,0.6)] ${isMobileMenuOpen ? '-rotate-[45deg] -translate-y-[8px] bg-light-teal' : ''}`}></span>
-                    </div>
-                </button>
+                <div className="lg:hidden">
+                    <MenuToggleIcon isOpen={isMobileMenuOpen} onClick={toggleMenu} />
+                </div>
             </header>
 
             {/* Desktop Sidebar (hidden on mobile) */}
@@ -73,19 +58,10 @@ const Dashboard = () => {
                 <DashboardMenu />
             </aside>
 
-            {/* Mobile Drawer Overlay */}
-            <div 
-                className={`fixed inset-0 bg-black/60 backdrop-blur-sm z-[80] lg:hidden transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] ${isMobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}
-                onClick={() => setIsMobileMenuOpen(false)}
-                aria-hidden={!isMobileMenuOpen}
-            ></div>
-
-            {/* Mobile Drawer Navigation */}
-            <aside 
-                className={`fixed top-16 left-0 h-[calc(100dvh-4rem)] w-[280px] sm:w-[320px] bg-transparent z-[90] lg:hidden transform transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] will-change-transform ${isMobileMenuOpen ? 'translate-x-0 shadow-[10px_0_40px_rgba(0,128,128,0.25)]' : '-translate-x-full'}`}
-            >
-                <DashboardMenu />
-            </aside>
+            {/* Mobile Drawer (Shared Reusable Module) */}
+            <SharedMobileMenu isOpen={isMobileMenuOpen} setIsOpen={setIsMobileMenuOpen}>
+                <DashboardMenu inDrawer={true} />
+            </SharedMobileMenu>
 
             {/* Main scrollable content area */}
             <main className="flex-1 h-[calc(100dvh-4rem)] lg:h-[100dvh] overflow-y-auto relative scroll-smooth flex flex-col bg-gray/30 w-full z-10 transition-all duration-500">
