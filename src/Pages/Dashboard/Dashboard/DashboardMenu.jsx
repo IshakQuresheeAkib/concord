@@ -1,10 +1,10 @@
 import { NavLink } from 'react-router-dom';
 import useUserBiodata from '../../../hook/useUserBiodata';
-import { EditOutlined, FolderViewOutlined, HomeOutlined, InteractionOutlined, PullRequestOutlined, SafetyOutlined, TeamOutlined, LogoutOutlined } from "@ant-design/icons";
-import { RiShieldStarLine } from 'react-icons/ri';
+import { LogoutOutlined } from "@ant-design/icons";
 import useAdmin from '../../../hook/useAdmin';
 import useAuth from '../../../hook/useAuth';
 import { enqueueSnackbar } from 'notistack';
+import { getDashboardUserItems, dashboardAdminItems } from '../../../utils/constants';
 
 const DashboardMenu = () => {
     const { logOut, user } = useAuth();
@@ -20,22 +20,6 @@ const DashboardMenu = () => {
     }
 
     const { BiodataId } = userBiodata || {};
-
-    const navbarItems1 = [
-        { id: 1, title: 'Edit', link: '/dashboard/edit', icon: <EditOutlined /> },
-        { id: 2, title: 'View Biodata', link: `/dashboard/view-biodata/${BiodataId}`, icon: <FolderViewOutlined /> },
-        { id: 3, title: 'My Contact Request', link: '/dashboard/contact-request', icon: <PullRequestOutlined /> },
-        { id: 4, title: 'Favourite Biodata', link: '/dashboard/favourite-biodata', icon: <SafetyOutlined /> },
-        { id: 5, title: 'Home', link: '/', icon: <HomeOutlined /> },
-    ];
-    
-    const navbarItems2 = [
-        { id: 5, title: 'Admin Dashboard', link: '/dashboard/admin/admin-dashboard', icon: <InteractionOutlined /> },
-        { id: 6, title: 'Manage Users', link: '/dashboard/admin/manage-users', icon: <TeamOutlined /> },
-        { id: 7, title: 'Approved Premium', link: '/dashboard/admin/approved-premium', icon: <RiShieldStarLine /> },
-        { id: 8, title: 'Approved Contact Request', link: '/dashboard/admin/approved-contact-request', icon: <SafetyOutlined /> },
-        { id: 9, title: 'Home', link: '/', icon: <HomeOutlined /> },
-    ];
 
     return (
         <nav className="relative w-full h-full flex flex-col justify-between overflow-y-auto custom-scrollbar bg-white/90 backdrop-blur-md transition-all duration-500 font-Nunito">
@@ -71,7 +55,7 @@ const DashboardMenu = () => {
 
                 {/* Navigation Links */}
                 <div className="flex flex-col space-y-2 pb-6">
-                    {(isAdmin ? navbarItems2 : navbarItems1)?.map(navItem => (
+                    {(isAdmin ? dashboardAdminItems : getDashboardUserItems(BiodataId))?.map(navItem => (
                         <NavLink 
                             key={navItem.id} 
                             to={navItem.link} 

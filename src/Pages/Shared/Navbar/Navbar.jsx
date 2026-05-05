@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import Loader from '../../../Components/Loader/Loader'
 import { motion, AnimatePresence } from "framer-motion";
 import UserDropdown from "./UserDropdown";
+import { navItems } from '../../../utils/constants';
 
 const Navbar = () => {
     const { user, logOut, loading } = useAuth()
@@ -18,14 +19,6 @@ const Navbar = () => {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     const dashboardLink = `/dashboard/${!isAdmin ? 'edit' : 'admin/admin-dashboard'}`;
-
-    
-    const navbarItems1 = [
-        { id: 1, title: 'Home', link: '/'},
-        { id: 2, title: 'Biodatas', link: '/biodatas'},
-        { id: 4, title: 'FAQ', link: '/faq'},
-        { id: 5, title: 'About Us', link: '/about-us'},
-    ];
 
     useEffect(() => {
         const handleScroll = () => {
@@ -60,7 +53,7 @@ const Navbar = () => {
 
                 {/* Desktop Navigation */}
                 <div className="hidden lg:flex items-center space-x-2 bg-white/10 backdrop-blur-3xl p-1.5 rounded-xl shadow-lg shadow-black/10">
-                    {navbarItems1.map((item) => {
+                    {navItems.map((item) => {
                         const isActive = location.pathname === item.link;
                         return (
                             <NavLink 
@@ -194,7 +187,7 @@ const Navbar = () => {
                             )}
 
                             <div className={`flex flex-col space-y-2 px-6 relative z-10 ${user ? 'mt-6' : 'mt-10'}`}>
-                                {navbarItems1.map((item, i) => (
+                                {navItems.map((item, i) => (
                                     <motion.div 
                                         key={item.id}
                                         initial={{ opacity: 0, x: -20 }}
