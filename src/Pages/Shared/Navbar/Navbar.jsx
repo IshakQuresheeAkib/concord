@@ -8,38 +8,40 @@ import { motion } from "framer-motion";
 import UserDropdown from "./UserDropdown";
 import { navItems } from '../../../utils/constants';
 import { MenuToggleIcon, SharedMobileMenu } from './MobileMenu';
-import { LogoutOutlined, AppstoreOutlined } from "@ant-design/icons";
+import { LogoutOutlined, AppstoreOutlined, LoginOutlined } from "@ant-design/icons";
 import PrimaryBtn from "../../../Components/Button/PrimaryBtn";
 import DesktopNav from "./DesktopNav";
+import useScrolled from "../../../hooks/useScrolled";
 
 const Navbar = () => {
     const { user, logOut, loading } = useAuth()
     const [isAdmin] = useAdmin()
-    const navigate = useNavigate();   
-    const [scrolled, setScrolled] = useState(false);
-    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const navigate = useNavigate();
+    const {scrolled} = useScrolled();
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     const dashboardLink = `/dashboard/${!isAdmin ? 'edit' : 'admin/admin-dashboard'}`;
 
-    useEffect(() => {
-        const handleScroll = () => {
-            const currentScrollPos = window.scrollY;
-            setScrolled(currentScrollPos > 50);
-        };
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
-
     const handleLogin = () => {
+        console.log('handleLogin called, user: ', user);
         if (!user) {
-            setMobileMenuOpen(false);
+            setIsMobileMenuOpen(false);
             return navigate('/login');
         }
         logOut().then(() => {
-            setMobileMenuOpen(false);
+            setIsMobileMenuOpen(false);
             return enqueueSnackbar('Logged Out Successfully!', { variant: 'success' })
         })
     }
+
+    // Prevent body scroll when mobile menu is open
+        useEffect(() => {
+            if (isMobileMenuOpen) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = 'auto';
+            }
+        }, [isMobileMenuOpen]);
 
     return (
         <header className="fixed top-0 w-full z-50 flex justify-center pointer-events-none transition-all duration-300">
@@ -62,12 +64,12 @@ const Navbar = () => {
                 />
 
                 <div className="lg:hidden">
-                    <MenuToggleIcon isOpen={mobileMenuOpen} onClick={() => setMobileMenuOpen(!mobileMenuOpen)} />
+                    <MenuToggleIcon isOpen={isMobileMenuOpen} onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} />
                 </div>
             </motion.nav>
 
             {/* Mobile Menu Overlay */}
-            <SharedMobileMenu isOpen={mobileMenuOpen} setIsOpen={setMobileMenuOpen}>
+            <SharedMobileMenu isOpen={isMobileMenuOpen} setIsOpen={setIsMobileMenuOpen}>
                 <div className="flex flex-col items-center space-y-3 group shrink-0 relative z-10 px-6">
                     {user && !loading ? (
                         <>
@@ -91,7 +93,7 @@ const Navbar = () => {
                     {navItems.map((item) => (
                         <NavLink key={item.id}
                                 to={item.link}
-                                onClick={() => setMobileMenuOpen(false)}
+                                onClick={() => setIsMobileMenuOpen(false)}
                                 className={({ isActive }) => `relative group flex items-center gap-3 py-3 px-4 font-bold text-sm md:text-base rounded-xl transition-all duration-300 overflow-hidden shrink-0 ${isActive ? 'text-dark-blue bg-teal/10 border border-teal/30' : 'text-black/60 hover:text-teal hover:bg-gray/80'}`}
                             >
                                 <div className="absolute inset-0 w-0 bg-gradient-to-r from-teal/10 to-transparent transition-all duration-500 ease-out group-hover:w-full -z-10"></div>
@@ -101,11 +103,21 @@ const Navbar = () => {
                     ))}
                     <div className="flex flex-col space-y-3">               
                     
-                    <PrimaryBtn onClick={() => {
-                        setMobileMenuOpen(false);
+                    {
+                    user && (
+                            
+                    <div>
+                        <PrimaryBtn onClick={() => {
+                        setIsMobileMenuOpen(false);
                         navigate(dashboardLink);
-                    }} data={'Dashboard'} icon={<AppstoreOutlined className="text-base xl:text-lg transition-transform duration-300" />}></PrimaryBtn>
-                    <PrimaryBtn onClick={handleLogin} data={'Logout'} icon={<LogoutOutlined className="text-base xl:text-lg transition-transform duration-300" />}></PrimaryBtn>
+                    }} data={'Dashboard'} icon={<AppstoreOutlined />}></PrimaryBtn> 
+
+                    </div>
+                    )
+                    }
+                    <div onClick={handleLogin}>
+                        <PrimaryBtn data={`${user ? 'Logout' : 'Login'}`} icon={user ? <LogoutOutlined /> : <LoginOutlined />}></PrimaryBtn>
+                    </div>
                 </div>
                 </div>
             </SharedMobileMenu>

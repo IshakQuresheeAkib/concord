@@ -75,8 +75,8 @@ const DashboardMenu = () => {
                         <p className="tracking-wide">{navItem.title}</p>
                     </NavLink>
                 ))}
-                <div className="pt-2 transform scale-90 xl:scale-100 origin-left">
-                    <PrimaryBtn onClick={handleLogin} data={'Logout'} icon={<LogoutOutlined className="text-base xl:text-lg transition-transform duration-300" />}></PrimaryBtn>
+                <div className="pt-2 transform scale-90 xl:scale-100 origin-left" onClick={handleLogin}>
+                    <PrimaryBtn data={'Logout'} icon={<LogoutOutlined className="text-base xl:text-lg transition-transform duration-300" />}></PrimaryBtn>
                 </div>
                 </div>
                 
