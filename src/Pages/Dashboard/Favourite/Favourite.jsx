@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
-import useAxiosPublic from "../../../hook/useAxiosPublic";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import { Button, Table } from "antd";
 import Heading from "../../../Components/Heading/Heading";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { enqueueSnackbar } from "notistack";
-import useAuth from "../../../hook/useAuth";
+import useAuth from "../../../hooks/useAuth";
 
 const Favourite = () => {
 

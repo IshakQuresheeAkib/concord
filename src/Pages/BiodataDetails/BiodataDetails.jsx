@@ -1,17 +1,17 @@
 import { useQuery } from "@tanstack/react-query";
-import useAxiosSecure from "../../hook/useAxiosSecure";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 import BiodataCard from "../Shared/BiodataCard/BiodataCard";
 import Heading from "../../Components/Heading/Heading";
 import { FiHeart } from "react-icons/fi";
 import { LuPhoneCall } from "react-icons/lu";
 import { Button, Modal } from "antd";
-import usePremium from "../../hook/usePremium";
+import usePremium from "../../hooks/usePremium";
 import { enqueueSnackbar } from "notistack";
-import useBiodata from "../../hook/useBiodata";
-import useAuth from "../../hook/useAuth";
+import useBiodata from "../../hooks/useBiodata";
+import useAuth from "../../hooks/useAuth";
 import { TfiBag } from "react-icons/tfi";
 import backgroundSVG from '../../../public/svg-background.svg'
-import useAdmin from "../../hook/useAdmin";
+import useAdmin from "../../hooks/useAdmin";
 import Loader from "../../Components/Loader/Loader";
 import { useState } from "react";
 import Checkout from "../Checkout/Checkout";

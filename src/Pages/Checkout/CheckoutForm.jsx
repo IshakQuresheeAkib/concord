@@ -1,8 +1,8 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
-import useAuth from "../../hook/useAuth";
-import useBiodata from "../../hook/useBiodata";
+import useAuth from "../../hooks/useAuth";
+import useBiodata from "../../hooks/useBiodata";
 import { useEffect, useState } from "react";
-import useAxiosSecure from "../../hook/useAxiosSecure";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { enqueueSnackbar } from "notistack";
 
 const CheckoutForm = () => {

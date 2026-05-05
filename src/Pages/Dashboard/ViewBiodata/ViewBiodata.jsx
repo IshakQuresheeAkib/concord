@@ -1,9 +1,9 @@
-import useBiodata from "../../../hook/useBiodata";
+import useBiodata from "../../../hooks/useBiodata";
 import PrimaryBtn from "../../../Components/Button/PrimaryBtn";
 import { RiShieldStarLine } from "react-icons/ri";
-import useAxiosSecure from "../../../hook/useAxiosSecure";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { enqueueSnackbar } from "notistack";
-import usePremium from "../../../hook/usePremium";
+import usePremium from "../../../hooks/usePremium";
 import Loader from "../../../Components/Loader/Loader";
 import { TfiBag } from "react-icons/tfi";
 

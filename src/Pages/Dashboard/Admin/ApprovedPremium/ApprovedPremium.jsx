@@ -1,7 +1,7 @@
 import { Button, Space, Table } from 'antd';
 import Heading from '../../../../Components/Heading/Heading';
 import { useQuery } from '@tanstack/react-query';
-import useAxiosSecure from '../../../../hook/useAxiosSecure';
+import useAxiosSecure from '../../../../hooks/useAxiosSecure';
 import { enqueueSnackbar } from 'notistack';
 
 

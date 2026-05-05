@@ -1,5 +1,5 @@
 import { Navigate, useLocation } from "react-router-dom";
-import useAuth from "../../hook/useAuth";
+import useAuth from "../../hooks/useAuth";
 import { enqueueSnackbar } from "notistack";
 import Loader from "../../Components/Loader/Loader";
 

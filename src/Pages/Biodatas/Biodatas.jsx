@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
 import { PiSealWarningFill } from "react-icons/pi";
 
-import useAxiosPublic from '../../hook/useAxiosPublic';
+import useAxiosPublic from '../../hooks/useAxiosPublic';
 import BiodataCard from "../Shared/BiodataCard/BiodataCard";
 import BiodataFilterSidebar from "./BiodataFilterSidebar";
 import Loader from '../../Components/Loader/Loader';

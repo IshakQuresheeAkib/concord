@@ -3,7 +3,7 @@ import Navbar from "../Pages/Shared/Navbar/Navbar";
 import Footer from "../Pages/Shared/Footer/Footer";
 import Home from "../Pages/Home/Home/Home";
 import Biodatas from "../Pages/Biodatas/Biodatas";
-import useAuth from "../hook/useAuth";
+import useAuth from "../hooks/useAuth";
 import Loader from "../Components/Loader/Loader";
 import { useEffect, useState } from "react";
 import concord from '/ConcordLogo.png'

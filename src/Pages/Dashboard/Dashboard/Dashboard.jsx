@@ -6,6 +6,7 @@ import DashboardMenu from "./DashboardMenu";
 import Logo from "../../../Components/Logo/Logo";
 import { MenuToggleIcon, SharedMobileMenu } from '../../Shared/Navbar/MobileMenu';
 
+
 const Dashboard = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const location = useLocation();

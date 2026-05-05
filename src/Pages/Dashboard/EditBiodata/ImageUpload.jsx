@@ -1,6 +1,6 @@
 import { FaEdit   } from "react-icons/fa";
 import {  useEffect, useRef, useState } from "react";
-import UseImagebb from "../../../hook/useImagebb";
+import UseImagebb from "../../../hooks/useImagebb";
 
 
 const ImageUpload = ({setImageLink,imageLink,userBiodata}) => {

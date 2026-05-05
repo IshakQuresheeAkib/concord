@@ -1,6 +1,6 @@
 import { NavLink, useNavigate } from "react-router-dom";
-import useAuth from '../../../hook/useAuth'
-import useAdmin from '../../../hook/useAdmin'
+import useAuth from '../../../hooks/useAuth'
+import useAdmin from '../../../hooks/useAdmin'
 import { enqueueSnackbar } from 'notistack';
 import Logo from '../../../Components/Logo/Logo';
 import { useEffect, useState } from "react";

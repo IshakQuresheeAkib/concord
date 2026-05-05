@@ -4,7 +4,7 @@ import { FaQuoteLeft } from 'react-icons/fa';import 'swiper/css';
 import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
 import { useQuery } from '@tanstack/react-query';
-import useAxiosPublic from '../../../hook/useAxiosPublic'
+import useAxiosPublic from '../../../hooks/useAxiosPublic'
 
 const Testimonial = () => {
 

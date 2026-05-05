@@ -1,9 +1,9 @@
 import Heading from "../../../Components/Heading/Heading";
 import {  DatePicker, Select } from "antd";
-import useUserBiodata from "../../../hook/useUserBiodata";
+import useUserBiodata from "../../../hooks/useUserBiodata";
 import { useState } from "react";
-import useAuth from "../../../hook/useAuth";
-import useAxiosSecure from "../../../hook/useAxiosSecure";
+import useAuth from "../../../hooks/useAuth";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { enqueueSnackbar } from "notistack";
 import ImageUpload from "./ImageUpload";
 import Loader from '../../../Components/Loader/Loader'

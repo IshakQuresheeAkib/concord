@@ -1,9 +1,9 @@
 import { Table } from "antd";
 import Heading from "../../../Components/Heading/Heading";
-import useAxiosSecure from "../../../hook/useAxiosSecure";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import { FaLock } from "react-icons/fa6";
-import useAuth from "../../../hook/useAuth";
+import useAuth from "../../../hooks/useAuth";
 
 
 const ContactRequest = () => {

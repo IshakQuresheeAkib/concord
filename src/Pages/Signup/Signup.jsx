@@ -5,11 +5,11 @@ import { FaCloudUploadAlt  } from "react-icons/fa";
 import { AiOutlineEye,AiOutlineEyeInvisible  } from 'react-icons/ai';
 import Heading from '../../Components/Heading/Heading'
 import { enqueueSnackbar } from "notistack";
-import useAuth from '../../hook/useAuth'
+import useAuth from '../../hooks/useAuth'
 import { FcGoogle } from 'react-icons/fc';
-import useAxiosPublic from "../../hook/useAxiosPublic";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { Button } from "antd";
-import UseImagebb from "../../hook/useImagebb";
+import UseImagebb from "../../hooks/useImagebb";
 import { useState } from "react";
 import { MdOutlineLink } from "react-icons/md";
 

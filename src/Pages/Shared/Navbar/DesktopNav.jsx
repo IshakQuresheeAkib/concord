@@ -1,7 +1,7 @@
 import { NavLink, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { motion, LayoutGroup, AnimatePresence } from "framer-motion";
-import { navItems } from "../../../../utils/constants";
+import { navItems } from "../../../utils/constants";
 
 const DesktopNav = () => {
     const location = useLocation();

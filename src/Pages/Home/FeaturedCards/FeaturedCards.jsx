@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import useAxiosSecure from "../../../hook/useAxiosSecure";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Heading from "../../../Components/Heading/Heading";
 import BiodataCard from "../../Shared/BiodataCard/BiodataCard";
 

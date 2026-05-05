@@ -1,7 +1,7 @@
 import { Navigate } from "react-router-dom";
 import Loader from "../Components/Loader/Loader";
 import { enqueueSnackbar } from "notistack";
-import useAdmin from "../hook/useAdmin";
+import useAdmin from "../hooks/useAdmin";
 
 
 const UserRoute = ({children}) => {

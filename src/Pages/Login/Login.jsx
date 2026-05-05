@@ -3,9 +3,9 @@ import { FcGoogle } from 'react-icons/fc';
 import { MdOutlineAlternateEmail } from 'react-icons/md';
 import { AiOutlineEye,AiOutlineEyeInvisible  } from 'react-icons/ai';
 import Heading from '../../Components/Heading/Heading'
-import useAuth from "../../hook/useAuth";
+import useAuth from "../../hooks/useAuth";
 import { enqueueSnackbar } from "notistack";
-import useAxiosPublic from "../../hook/useAxiosPublic";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { Button } from "antd";
 import { useState } from "react";
 

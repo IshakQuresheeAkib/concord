@@ -1,8 +1,8 @@
 import { NavLink } from 'react-router-dom';
-import useUserBiodata from '../../../hook/useUserBiodata';
+import useUserBiodata from '../../../hooks/useUserBiodata';
 import { LogoutOutlined } from "@ant-design/icons";
-import useAdmin from '../../../hook/useAdmin';
-import useAuth from '../../../hook/useAuth';
+import useAdmin from '../../../hooks/useAdmin';
+import useAuth from '../../../hooks/useAuth';
 import { enqueueSnackbar } from 'notistack';
 import { getDashboardUserItems, dashboardAdminItems } from '../../../utils/constants';
 import PrimaryBtn from '../../../Components/Button/PrimaryBtn';

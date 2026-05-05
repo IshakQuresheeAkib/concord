@@ -5,8 +5,8 @@ import {
     PieChart, Pie, Cell, Tooltip, ResponsiveContainer, 
     BarChart, Bar, XAxis, YAxis, CartesianGrid, Legend 
 } from 'recharts';
-import useAxiosSecure from '../../../../hook/useAxiosSecure';
-import useAuth from '../../../../hook/useAuth';
+import useAxiosSecure from '../../../../hooks/useAxiosSecure';
+import useAuth from '../../../../hooks/useAuth';
 import Loader from '../../../../Components/Loader/Loader';
 
 const StatCard = ({ title, value, icon: Icon, delay, color }) => (
