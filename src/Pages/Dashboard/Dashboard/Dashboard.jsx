@@ -50,7 +50,6 @@ const Dashboard = () => {
                    <Logo/>
                 </div>
 
-                {/* Animated Retro-Futuristic Hamburger Button */}
                 <button 
                     onClick={toggleMenu}
                     className="relative z-10 flex items-center justify-center w-11 h-11 rounded-lg bg-teal/5 border border-teal/30 hover:bg-teal/10 hover:border-teal/50 hover:shadow-[0_0_15px_rgba(0,128,128,0.4)] transition-all duration-300 focus:outline-none group overflow-hidden"
@@ -70,7 +69,7 @@ const Dashboard = () => {
             </header>
 
             {/* Desktop Sidebar (hidden on mobile) */}
-            <aside className="hidden lg:block w-72 lg:w-80 shrink-0 h-full border-r border-teal/20 bg-white/95 z-20 shadow-[4px_0_24px_rgba(0,128,128,0.05)]">
+            <aside className="hidden lg:block w-72 lg:w-1/5 shrink-0 h-full z-20 shadow-md">
                 <DashboardMenu />
             </aside>
 
