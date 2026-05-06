@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import concord from "../../assets/logo.webp";
 
 const Logo = ({ 
-    imageWidthClass = "w-[110px] min-[340px]:w-[124px] min-[744px]:w-[145px] lg:w-[176px] xl:w-[200px] min-[1920px]:w-[240px] min-[2560px]:w-[280px]" 
+    imageWidthClass = "w-[180px] xs:w-[220px] sm:w-[240px]" 
 }) => {
     const navigate = useNavigate();
 

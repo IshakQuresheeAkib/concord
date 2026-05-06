@@ -8,7 +8,7 @@ const DesktopNav = () => {
     const [hoveredPath, setHoveredPath] = useState(null);
 
     return (
-        <div className="hidden lg:flex items-center space-x-1 bg-white/10 backdrop-blur-3xl mix-blend-multiply p-1.5 rounded-xl shadow-lg shadow-black/10 border border-black/5 overflow-hidden">
+        <div className="hidden lg:flex items-center space-x-1 bg-white/10 backdrop-blur-3xl mix-blend-multiply p-1.5 rounded-xl shadow-lg shadow-black/10 border border-black/5 overflow-hidden -ml-24">
             <LayoutGroup>
                 <AnimatePresence>
                     {navItems.map((item) => {

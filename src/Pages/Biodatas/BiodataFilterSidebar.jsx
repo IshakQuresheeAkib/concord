@@ -119,7 +119,7 @@ const BiodataFilterSidebar = ({
     return (
         <>
             {isMobile && (
-                <div className="lg:hidden mb-6 flex justify-between items-center bg-white p-4 rounded-2xl shadow-sm border border-gray-100">
+                <div className="lg:hidden relative -top-20 flex justify-between items-center bg-white p-4 rounded-2xl shadow-black/20 shadow-inner">
                     <span className="font-bold text-teal-900">
                         {activeFiltersCount} Filters active
                     </span>
