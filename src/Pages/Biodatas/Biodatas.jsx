@@ -66,7 +66,7 @@ const Biodatas = () => {
                     <Navbar />
                 </div>
                 <div className="absolute inset-0 w-full h-full bg-fixed bg-cover bg-center" style={{ backgroundImage: "url('https://i.ibb.co.com/60h84M9Q/biodatas-banner.webp')" }}>
-                    <div className="absolute inset-0 bg-gradient-to-b from-dark-blue/80 via-teal/50 to-gray z-10 mix-blend-multiply" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-teal-700/50 via-teal-200/70 to-white z-10 mix-blend-multiply" />
                 </div>
                 
                 <motion.div 
@@ -75,8 +75,8 @@ const Biodatas = () => {
                     transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
                     className="relative z-20 text-center px-4 w-full max-w-4xl"
                 >
-                    <h1 className="text-5xl md:text-7xl font-extrabold text-white drop-shadow-2xl tracking-tighter mb-4">
-                        Discover <span className="text-light-teal italic">Connections</span>
+                    <h1 className="text-5xl md:text-7xl font-extrabold text-black drop-shadow-2xl tracking-tighter mb-4">
+                        Discover <span className="text-coral italic">Connections</span>
                     </h1>
                     <p className="text-lg md:text-2xl text-white/90 font-light tracking-wide drop-shadow-md">
                         Explore the beauty of relationships as you navigate through our curated space.
@@ -133,7 +133,7 @@ const Biodatas = () => {
                             className="bg-white/50 backdrop-blur-md rounded-3xl p-12 text-center border border-white shadow-xl mt-10"
                         >
                             <PiSealWarningFill className="w-24 h-24 mx-auto text-teal/40 mb-6 drop-shadow-sm"/>
-                            <h3 className="text-2xl font-bold text-dark-blue mb-2">No Profiles Found</h3>
+                            <h3 className="text-2xl font-bold text-teal-900 mb-2">No Profiles Found</h3>
                             <p className="text-black/60 font-medium">Try adjusting your filters to discover more matches.</p>
                         </motion.div>
                     )}

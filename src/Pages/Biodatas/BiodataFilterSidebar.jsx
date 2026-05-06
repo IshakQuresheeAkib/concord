@@ -38,7 +38,7 @@ const BiodataFilterSidebar = ({
             {/* Age Range */}
             <div className="group">
                 <div className="flex justify-between items-center mb-4">
-                    <label className="text-sm font-bold text-dark-blue/80 tracking-wide">Age Range</label>
+                    <label className="text-sm font-bold text-teal-900/80 tracking-wide">Age Range</label>
                     <span className="text-xs font-bold text-teal bg-teal/10 px-3 py-1 rounded-full">{minAge} - {maxAge}</span>
                 </div>
                 <div className="px-1">
@@ -65,7 +65,7 @@ const BiodataFilterSidebar = ({
 
             {/* Location */}
             <div className="group">
-                <label className="block text-sm font-bold text-dark-blue/80 tracking-wide mb-3">Location</label>
+                <label className="block text-sm font-bold text-teal-900/80 tracking-wide mb-3">Location</label>
                 <Select 
                     placeholder="Select Division" 
                     value={location || undefined}
@@ -81,7 +81,7 @@ const BiodataFilterSidebar = ({
 
             {/* Biodata Type */}
             <div className="group">
-                <label className="block text-sm font-bold text-dark-blue/80 tracking-wide mb-4">Looking For</label>
+                <label className="block text-sm font-bold text-teal-900/80 tracking-wide mb-4">Looking For</label>
                 <div className="flex flex-col gap-3">
                     {[
                         { id: 'Male', label: 'Groom (Male)' },
@@ -94,7 +94,7 @@ const BiodataFilterSidebar = ({
                             className={`relative w-full overflow-hidden flex items-center justify-between px-5 py-4 rounded-2xl transition-all duration-300 font-bold ${
                                 type === opt.id 
                                 ? 'bg-teal text-white shadow-lg shadow-teal/20 scale-[1.02]' 
-                                : 'bg-black/5 text-dark-blue/70 hover:bg-teal/5 hover:text-teal hover:border-teal/20'
+                                : 'bg-black/5 text-teal-900/70 hover:bg-teal/5 hover:text-teal hover:border-teal/20'
                             }`}
                         >
                             <span className="relative z-10">{opt.label}</span>
@@ -120,7 +120,7 @@ const BiodataFilterSidebar = ({
         <>
             {isMobile && (
                 <div className="lg:hidden mb-6 flex justify-between items-center bg-white p-4 rounded-2xl shadow-sm border border-gray-100">
-                    <span className="font-bold text-dark-blue">
+                    <span className="font-bold text-teal-900">
                         {activeFiltersCount} Filters active
                     </span>
                     <button 
@@ -138,7 +138,7 @@ const BiodataFilterSidebar = ({
                 placement="right"
                 onClose={() => setIsMobileDrawerOpen(false)}
                 open={isMobileDrawerOpen && isMobile}
-                closeIcon={<FiX size={24} className="text-dark-blue hover:text-teal transition-colors" />}
+                closeIcon={<FiX size={24} className="text-teal-900 hover:text-teal transition-colors" />}
                 className="font-Nunito"
                 styles={{ body: { paddingBottom: 80 } }}
             >
@@ -157,7 +157,7 @@ const BiodataFilterSidebar = ({
                             <div className="p-3 bg-gradient-to-br from-teal/20 to-teal/5 rounded-2xl text-teal">
                                 <FiFilter size={24} className="stroke-[2.5]" />
                             </div>
-                            <h2 className="text-2xl font-extrabold text-dark-blue tracking-tight">Filters</h2>
+                            <h2 className="text-2xl font-extrabold text-teal-900 tracking-tight">Filters</h2>
                         </div>
                         {activeFiltersCount > 0 && (
                             <span className="text-xs font-bold px-3 py-1 bg-teal/10 text-teal rounded-full animate-pulse">{activeFiltersCount} Active</span>

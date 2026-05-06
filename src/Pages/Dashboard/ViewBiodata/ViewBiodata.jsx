@@ -70,7 +70,7 @@ const ViewBiodata = () => {
                     <h2 className="font-semibold">Email: {ContactEmail}</h2>
                     <h2 className="font-semibold">Contact Number: {MobileNumber}</h2>                   
                 </div>
-                </div> : <h2 className="text-2xl font-bold text-dark-blue">You dont have biodata!</h2>
+                </div> : <h2 className="text-2xl font-bold text-teal-900">You dont have biodata!</h2>
             }
         </div>
     )}

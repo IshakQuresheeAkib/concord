@@ -59,7 +59,7 @@ const DashboardMenu = () => {
                         className={({ isActive }) => `
                             relative group flex items-center gap-2 xl:gap-3 py-2 px-3 xl:py-3 xl:px-4 font-bold text-xs md:text-sm xl:text-base rounded-xl transition-all duration-300 overflow-hidden shrink-0
                             ${isActive 
-                                ? 'text-dark-blue bg-teal/10 border border-teal/30' 
+                                ? 'text-teal-900 bg-teal/10 border border-teal/30' 
                                 : 'text-black/60 hover:text-teal hover:bg-teal/5'}
                         `}
                     >

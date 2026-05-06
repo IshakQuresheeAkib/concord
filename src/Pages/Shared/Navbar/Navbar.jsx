@@ -93,7 +93,7 @@ const Navbar = () => {
                         <NavLink key={item.id}
                                 to={item.link}
                                 onClick={() => setIsMobileMenuOpen(false)}
-                                className={({ isActive }) => `relative group flex items-center gap-3 py-3 px-4 font-bold text-sm md:text-base rounded-xl transition-all duration-300 overflow-hidden shrink-0 ${isActive ? 'text-dark-blue bg-teal/10 border border-teal/30' : 'text-black/60 hover:text-teal hover:bg-gray/80'}`}
+                                className={({ isActive }) => `relative group flex items-center gap-3 py-3 px-4 font-bold text-sm md:text-base rounded-xl transition-all duration-300 overflow-hidden shrink-0 ${isActive ? 'text-teal-900 bg-teal/10 border border-teal/30' : 'text-black/60 hover:text-teal hover:bg-gray/80'}`}
                             >
                                 <div className="absolute inset-0 w-0 bg-gradient-to-r from-teal/10 to-transparent transition-all duration-500 ease-out group-hover:w-full -z-10"></div>
                                 <div className="absolute left-0 top-1/4 h-1/2 w-1 bg-light-teal opacity-0 transform -translate-x-full transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0 rounded-r-md"></div>

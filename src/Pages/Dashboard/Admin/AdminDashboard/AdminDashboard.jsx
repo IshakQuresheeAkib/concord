@@ -19,12 +19,12 @@ const StatCard = ({ title, value, icon: Icon, delay, color }) => (
         <div className="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-gradient-to-br from-white/40 to-white/0 rounded-full blur-2xl z-0" />
         <div className="relative z-10 flex items-start justify-between">
             <div>
-                <p className="text-xs xl:text-sm font-bold text-dark-blue/60 tracking-wider mb-1 xl:mb-2">{title}</p>
+                <p className="text-xs xl:text-sm font-bold text-teal-900/60 tracking-wider mb-1 xl:mb-2">{title}</p>
                 <motion.h3 
                     initial={{ scale: 0.5, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
                     transition={{ type: "spring", stiffness: 100, delay: delay + 0.2 }}
-                    className="text-3xl xl:text-4xl font-extrabold text-dark-blue"
+                    className="text-3xl xl:text-4xl font-extrabold text-teal-900"
                 >
                     {value || 0}
                 </motion.h3>
@@ -89,10 +89,10 @@ const AdminDashboard = () => {
                 transition={{ duration: 0.6, ease: "easeOut" }}
                 className="shrink-0"
             >
-                <h1 className="text-2xl md:text-3xl lg:text-4xl 2xl:text-5xl font-extrabold text-dark-blue tracking-tight mb-1 md:mb-2">
+                <h1 className="text-2xl md:text-3xl lg:text-4xl 2xl:text-5xl font-extrabold text-teal-900 tracking-tight mb-1 md:mb-2">
                     Platform <span className="text-teal italic">Overview</span>
                 </h1>
-                <p className="text-dark-blue/60 font-bold tracking-wide text-xs md:text-sm 2xl:text-base">
+                <p className="text-teal-900/60 font-bold tracking-wide text-xs md:text-sm 2xl:text-base">
                     Real-time metrics and analytics for Concord.
                 </p>
             </motion.header>
@@ -101,7 +101,7 @@ const AdminDashboard = () => {
             <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 2xl:gap-6 shrink-0">
                 <StatCard title="TOTAL PROFILES" value={totalBiodata} icon={FiUsers} delay={0.1} color="bg-teal/10 text-teal" />
                 <StatCard title="MALE PROFILES" value={maleBiodata} icon={FiUserPlus} delay={0.2} color="bg-[#00C4C4]/10 text-light-teal" />
-                <StatCard title="FEMALE PROFILES" value={femaleBiodata} icon={FiUserPlus} delay={0.3} color="bg-dark-blue/10 text-dark-blue" />
+                <StatCard title="FEMALE PROFILES" value={femaleBiodata} icon={FiUserPlus} delay={0.3} color="bg-teal-900/10 text-teal-900" />
                 <StatCard title="PREMIUM USERS" value={premiumBiodata} icon={FiStar} delay={0.4} color="bg-yellow-500/10 text-yellow-600" />
             </section>
 
@@ -117,7 +117,7 @@ const AdminDashboard = () => {
                     variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}
                     className="lg:col-span-1 bg-white/80 backdrop-blur-2xl p-5 xl:p-6 2xl:p-8 rounded-[1.5rem] xl:rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-white flex flex-col items-center justify-center transform transition-transform hover:-translate-y-1 duration-500 min-h-[300px] lg:min-h-0 h-full"
                 >
-                    <h3 className="w-full text-base xl:text-lg font-extrabold text-dark-blue tracking-wide mb-4 xl:mb-6 shrink-0 text-center lg:text-left">Gender Distribution</h3>
+                    <h3 className="w-full text-base xl:text-lg font-extrabold text-teal-900 tracking-wide mb-4 xl:mb-6 shrink-0 text-center lg:text-left">Gender Distribution</h3>
                     <div className="w-full flex-1 min-h-0">
                         <ResponsiveContainer width="100%" height="100%">
                             <PieChart>
@@ -150,7 +150,7 @@ const AdminDashboard = () => {
                     className="lg:col-span-2 bg-white/80 backdrop-blur-2xl p-5 xl:p-6 2xl:p-8 rounded-[1.5rem] xl:rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-white transform transition-transform hover:-translate-y-1 duration-500 flex flex-col min-h-[350px] lg:min-h-0 h-full"
                 >
                     <div className="flex justify-between items-center mb-4 xl:mb-6 shrink-0">
-                        <h3 className="text-base xl:text-lg font-extrabold text-dark-blue tracking-wide">Account Tiers</h3>
+                        <h3 className="text-base xl:text-lg font-extrabold text-teal-900 tracking-wide">Account Tiers</h3>
                         <div className="px-3 xl:px-4 py-1 xl:py-1.5 bg-teal/5 text-teal text-[10px] xl:text-xs font-bold rounded-full border border-teal/10">Overview</div>
                     </div>
                     <div className="w-full flex-1 min-h-0">

@@ -13,7 +13,7 @@ const HowWeWork = () => {
                 </div>
                 <div className="flex w-full flex-col items-center justify-between gap-y-10 lg:flex-row lg:gap-x-8 lg:gap-y-0 xl:gap-x-10">
                   <div className="flex items-start gap-4">
-                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-light-teal" >
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-coral" >
                       <span className="text-base font-bold leading-7 text-white">1</span>
                     </div>
                     <div className="flex flex-col">
@@ -27,7 +27,7 @@ const HowWeWork = () => {
                   </div>
                   <div className="lg:w-24 w-10"><Lottie animationData={rightIcon}></Lottie></div>                  
                   <div className="flex items-start gap-4">
-                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-light-teal" >
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-coral" >
                       <span className="text-base font-bold leading-7 text-white">2</span>
                     </div>
                     <div className="flex flex-col">
@@ -41,7 +41,7 @@ const HowWeWork = () => {
                   </div>
                   <div className="lg:w-24 w-10"><Lottie animationData={rightIcon}></Lottie></div>
                   <div className="flex items-start gap-4">
-                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-light-teal" >
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-coral" >
                       <span className="text-base font-bold leading-7 text-white">3</span>
                     </div>
                     <div className="flex flex-col">

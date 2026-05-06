@@ -19,11 +19,11 @@ const UserDropdown = ({ user, loading, handleLogin, dashboardLink }) => {
             {user ? (
                 <button 
                     onClick={() => setDesktopMenuOpen(!desktopMenuOpen)}
-                    className={`relative p-1 pb-1 pl-1 pr-7 bg-white/10 backdrop-blur-3xl  shadow-lg shadow-black/10 border border-black/5 rounded-full group focus:outline-none`}
+                    className={`relative pl-1 py-1 pr-9 mix-blend-multiply bg-white/10 backdrop-blur-3xl shadow-black/10 border border-black/5 shadow-inner rounded-full group focus:outline-none`}
                     aria-label="Open User Menu"
                 >
                     <div className="relative">
-                        <div className="absolute -inset-1.5 bg-gradient-to-r from-coral-300 to-coral rounded-full blur-md opacity-30 group-hover:opacity-30 transition duration-0 animate-pulse"></div>
+                        <div className="absolute -inset-1 bg-gradient-to-r from-coral-500 to-coral rounded-full blur-md opacity-50 group-hover:opacity-30 transition duration-1000 animate-pulse"></div>
                         <img src={user.photoURL} alt="Avatar" className="w-[55px] h-[55px] rounded-full object-cover relative z-10 shadow-md group-hover:scale-105 transition-transform duration-300" />
                     </div>
                     <div className={`w-[100px] absolute bottom-1/2 translate-y-1/2 left-6 transition-transform duration-300 ease-in-out ${desktopMenuOpen ? 'rotate-180' : 'g                                                                                                  roup-hover:translate-y-0.5'}`}>
@@ -58,7 +58,7 @@ const UserDropdown = ({ user, loading, handleLogin, dashboardLink }) => {
                             animate={{ opacity: 1, y: 0, scale: 1 }}
                             exit={{ opacity: 0, y: 10, scale: 0.95 }}
                             transition={{ type: "spring", bounce: 0.4, duration: 0.5 }}
-                            className="absolute top-[calc(100%+16px)] right-0 w-64 bg-white/85 backdrop-blur-3xl shadow-[0_20px_40px_-15px_rgba(224,120,86,0.3)] rounded-2xl p-2 z-50 overflow-hidden"
+                            className="absolute top-[calc(100%+16px)] right-0 w-64 bg-white/85 backdrop-blur-3xl shadow-[0_20px_40px_-15px_rgba(224,120,86,0.3)] rounded-2xl mix-blend-multiply p-2 z-50 overflow-hidden"
                         >
                             {/* Design Accent inside menu */}
                             <div className="absolute top-0 right-0 w-32 h-32 bg-coral/10 blur-3xl -z-10 rounded-full"></div>
