@@ -10,7 +10,6 @@ import { enqueueSnackbar } from "notistack";
 import useBiodata from "../../hooks/useBiodata";
 import useAuth from "../../hooks/useAuth";
 import { TfiBag } from "react-icons/tfi";
-import backgroundSVG from '../../../public/svg-background.svg'
 import useAdmin from "../../hooks/useAdmin";
 import Loader from "../../Components/Loader/Loader";
 import { useState } from "react";
@@ -72,7 +71,7 @@ const BiodataDetails = () => {
 
     return (
         <div>
-            <img loading="lazy" className="w-full absolute top-0 h-96 object-cover -z-50" src={backgroundSVG}></img>
+            <img loading="lazy" className="w-full absolute top-0 h-96 object-cover -z-50" src="/svg-background.svg"></img>
             <div className="max-w-6xl 2xl:mx-auto mx-10 my-52 gap-20 justify-between z-50 bg-white rounded-xl">
                 <div className="mt-10 border-b-8 shadow rounded-xl border-teal flex md:flex-row flex-col py-10 lg:px-10 px-4 md:justify-between justify-center items-center">                          
                     <div className="">
