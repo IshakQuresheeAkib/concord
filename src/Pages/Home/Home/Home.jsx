@@ -1,25 +1,26 @@
 import { lazy, Suspense } from "react";
 import Banner from "../Banner";
+import Loader from "../../../Components/Loader/Loader";
 import FeaturedCards from "../FeaturedCards/FeaturedCards";
-import HowWeWork from "../HowWeWork/HowWeWork";
-import SuccessCounter from "../SuccessCounter/SuccessCounter";
-import Testimonial from "../Testimonial/Testimonial";
 
+const HowWeWork = lazy(() => import("../HowWeWork/HowWeWork"));
+const SuccessCounter = lazy(() => import("../SuccessCounter/SuccessCounter"));
+const Testimonial = lazy(() => import("../Testimonial/Testimonial"));
 const ContactUs = lazy(() => import("../../Shared/ContactUs/ContactUs"));
 const Faq = lazy(() => import("../../Shared/Faq/Faq"));
 
 const Home = () => {
     return (
-        <div>
-             <Banner></Banner>
-             <FeaturedCards></FeaturedCards>
-             <Suspense>
-             <HowWeWork></HowWeWork>
-             <SuccessCounter></SuccessCounter>
-             <Testimonial></Testimonial>
-                 <Faq></Faq>
-                 <div className="mt-24"><ContactUs></ContactUs></div>
-             </Suspense>
-        </div>
+        <>
+            <Banner />
+            <FeaturedCards />
+            <Suspense fallback={<Loader />}>
+                <HowWeWork />
+                <SuccessCounter />
+                <Testimonial />
+                <Faq />
+                <ContactUs />
+            </Suspense>
+        </>
     )}
 export default Home;
