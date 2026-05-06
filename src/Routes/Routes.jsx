@@ -1,25 +1,29 @@
+/* eslint-disable react-refresh/only-export-components */
+
 import {createBrowserRouter} from "react-router-dom";
+import { lazy } from 'react';
 import Main from "../Layout/Main";
-import ErrorElement from "../Pages/ErrorElement/ErrorElement";
-import Faq from "../Pages/Shared/Faq/Faq";
-import ContactUs from "../Pages/Shared/ContactUs/ContactUs";
-import Login from "../Pages/Login/Login";
-import Signup from "../Pages/Signup/Signup";
-import AboutUs from "../Pages/AboutUs/AboutUs";
-import Dashboard from "../Pages/Dashboard/Dashboard/Dashboard";
 import PrivateRoutes from "./PrivateRoutes/PrivateRoute";
-import EditBiodata from "../Pages/Dashboard/EditBiodata/EditBiodata";
-import ViewBiodata from "../Pages/Dashboard/ViewBiodata/ViewBiodata";
-import ContactRequest from "../Pages/Dashboard/ContactRequest/ContactRequest";
-import Favourite from "../Pages/Dashboard/Favourite/Favourite";
-import AdminDashboard from "../Pages/Dashboard/Admin/AdminDashboard/AdminDashboard";
-import ManageUsers from "../Pages/Dashboard/Admin/ManageUsers/ManageUsers";
-import ApprovedPremium from "../Pages/Dashboard/Admin/ApprovedPremium/ApprovedPremium";
-import ApprovedContactReq from "../Pages/Dashboard/Admin/ApprovedContactReq/ApprovedContactReq";
 import AdminRoute from "./AdminRoute";
-import BiodataDetails from "../Pages/BiodataDetails/BiodataDetails";
-import Checkout from "../Pages/Checkout/Checkout";
 import UserRoute from "./UserRoute";
+
+const ErrorElement = lazy(() => import("../Pages/ErrorElement/ErrorElement"));
+const Faq = lazy(() => import("../Pages/Shared/Faq/Faq"));
+const ContactUs = lazy(() => import("../Pages/Shared/ContactUs/ContactUs"));
+const Login = lazy(() => import("../Pages/Login/Login"));
+const Signup = lazy(() => import("../Pages/Signup/Signup"));
+const AboutUs = lazy(() => import("../Pages/AboutUs/AboutUs"));
+const Dashboard = lazy(() => import("../Pages/Dashboard/Dashboard/Dashboard"));
+const EditBiodata = lazy(() => import("../Pages/Dashboard/EditBiodata/EditBiodata"));
+const ViewBiodata = lazy(() => import("../Pages/Dashboard/ViewBiodata/ViewBiodata"));
+const ContactRequest = lazy(() => import("../Pages/Dashboard/ContactRequest/ContactRequest"));
+const Favourite = lazy(() => import("../Pages/Dashboard/Favourite/Favourite"));
+const AdminDashboard = lazy(() => import("../Pages/Dashboard/Admin/AdminDashboard/AdminDashboard"));
+const ManageUsers = lazy(() => import("../Pages/Dashboard/Admin/ManageUsers/ManageUsers"));
+const ApprovedPremium = lazy(() => import("../Pages/Dashboard/Admin/ApprovedPremium/ApprovedPremium"));
+const ApprovedContactReq = lazy(() => import("../Pages/Dashboard/Admin/ApprovedContactReq/ApprovedContactReq"));
+const BiodataDetails = lazy(() => import("../Pages/BiodataDetails/BiodataDetails"));
+const Checkout = lazy(() => import("../Pages/Checkout/Checkout"));
   
 export  const router = createBrowserRouter([
     {
