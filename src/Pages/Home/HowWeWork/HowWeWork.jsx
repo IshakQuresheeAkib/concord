@@ -5,8 +5,9 @@ import rightIcon from '../../../assets/rightIcon.json'
 
 const HowWeWork = () => {
     return (
-            <div className="container mx-auto my-52 flex flex-col items-center gap-16 max-w-6xl px-5 relative" >
-              <img loading="lazy" src="https://i.ibb.co/hVgs5kW/Untitled-designsfdfd-1.png" alt="" className="absolute xl:-left-56 -left-10 2xl:-top-36 -top-44 lg:w-64 md:w-52 w-40 opacity-40"/>
+            <div className=" my-52 relative" >
+              <img loading="lazy" src="https://i.ibb.co/hVgs5kW/Untitled-designsfdfd-1.png" alt="" className="absolute -right-10 2xl:-top-36 -top-44 lg:w-64 md:w-52 w-40 opacity-40"/>
+              <div className="flex flex-col items-center gap-10 max-w-[85vw] 3xl:max-w-[75vw] mx-auto">
                 <div className="flex flex-col gap-2">
                     <Heading>How We Works?</Heading>
                     <SubHeading>Embark on Your Journey: The Concord Experience Unveiled.</SubHeading>
@@ -56,6 +57,7 @@ const HowWeWork = () => {
                     </div>
                   </div>
                 </div>
+              </div>
             </div>
 
     )}
