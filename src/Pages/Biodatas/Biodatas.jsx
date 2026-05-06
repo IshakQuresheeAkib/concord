@@ -53,12 +53,12 @@ const Biodatas = () => {
     };
 
     const itemVariants = {
-        hidden: { opacity: 0, y: 10, scale: 0.95 },
+        hidden: { opacity: 0, y: 1, scale: 0.95 },
         show: { opacity: 1, y: 0, scale: 1 }
     };
 
     return (
-        <div className="font-Nunito bg-gray min-h-screen selection:bg-teal selection:text-white">
+        <div className="font-Nunito min-h-screen selection:bg-teal selection:text-white">
             
             {/* Cinematic Hero Section */}
             <div className="relative w-full h-[30vh] lg:h-[70vh] overflow-hidden bg-black flex items-center justify-center">

@@ -12,7 +12,7 @@ const BiodataCard = ({biodata}) => {
     const navigate = useNavigate();
 
     return (
-        <div className="w-full mt-7 2xl:max-w-sm max-w-xs overflow-hidden rounded-lg shadow-lg group" data-aos='slide-up' data-aos-once="true">
+        <div className="w-full mt-7 2xl:max-w-sm max-w-xs overflow-hidden rounded-lg shadow-lg group" data-aos='short-slide-up' data-aos-easing="ease-in-out" data-aos-once="true">
                 <div className="flex items-center px-2 py-3 bg-teal">
                 <img loading="lazy" className="object-cover w-32 h-32 rounded-full" src={ProfileImageLink} alt="avatar" />
                     <div className="text-left ml-3 ">

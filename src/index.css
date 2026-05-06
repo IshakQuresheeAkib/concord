@@ -13,3 +13,14 @@ input::placeholder{
     font-weight: 300;
     font-size:14px;
 }
+/* Custom AOS Animation for a shorter slide up */
+[data-aos="short-slide-up"] {
+  transform: translateY(20px);
+  opacity: 0;
+  transition-property: transform, opacity;
+}
+
+[data-aos="short-slide-up"].aos-animate {
+  transform: translateY(0);
+  opacity: 1;
+}
