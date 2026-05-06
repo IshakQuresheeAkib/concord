@@ -12,7 +12,8 @@ const DesktopNav = () => {
             <LayoutGroup>
                 <AnimatePresence>
                     {navItems.map((item) => {
-                        const isActive = location.pathname === item.link;
+                        const isActive = location.pathname === item.link; 
+                        
                         return (
                             <NavLink 
                                 key={item.id} 
