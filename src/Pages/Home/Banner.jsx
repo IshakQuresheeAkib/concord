@@ -23,10 +23,10 @@ const Banner = () => {
                             </svg>
                             <div className="relative xl:bottom-14 2xl:bottom-0 mx-auto overflow-hidden sm:max-w-2xl md:max-w-full 2xl:w-screen md:px-[75px] px-6 xl:pt-44 py-28 2xl:py-36 h-screen">
                                 <div className="w-full 2xl:pt-6 xl:w-full flex flex-col items-start">
-                                    <h2 className="mb-3 text-6xl font-bold sm:text-7xl 2xl:text-8xl text-black">
-                                        <span className="text-coral leading-tight lg:leading-none">Ready to </span> 
+                                    <h2 className="mb-3 text-6xl font-bold sm:text-7xl 2xl:text-[85px] 3xl:text-8xl text-black">
+                                        <span className="text-coral leading-tight lg:leading-[1.1]">Ready to </span> 
                                         <br/>
-                                        <span className="text-teal-600 leading-tight lg:leading-none">Meet Your Match?</span>
+                                        <span className="text-teal-600 leading-tight lg:leading-[1.1]">Meet Your Match?</span>
                                     </h2>
                                     <p className="max-w-xl mb-6 text-base text-black/80 sm:text-lg lg:text-xl">
                                     Finding someone special is easy here. We focus on real connections and shared values. Start your next chapter simply.</p>

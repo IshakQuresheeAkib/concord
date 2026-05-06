@@ -8,6 +8,7 @@ export default {
     extend: {
       screens: {
         'xs': '350px',
+        '3xl': '1600px'
       },
       colors: {
         'light-teal':'#00C4C4',
