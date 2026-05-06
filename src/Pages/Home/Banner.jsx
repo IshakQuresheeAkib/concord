@@ -14,7 +14,7 @@ const Banner = () => {
             <div className="relative" >
                  <img loading="lazy" src="https://i.ibb.co.com/TqFhkPYG/ring.webp"
                     className="absolute inset-0 object-cover w-full h-full"/>
-                    <div className="bg-gradient-to-b absolute from-white/60 via-white/5 to-white/0 w-full h-screen bg-fixed"></div>
+                    <div className="absolute top-0 left-0 w-full h-[50vh] bg-gradient-to-b from-white/80 via-white/30 to-transparent pointer-events-none"></div>
                         <div className="relative ">
                             {/* bottom design */}
                             <svg className="absolute inset-x-0 bottom-0 text-white"

@@ -104,7 +104,7 @@ const Signup = () => {
             </button>
             <div className="my-5 flex items-center justify-between">
                 <span className="border-b border-black/10 w-1/5 md:w-1/3"></span>
-                <Link to="" className="text-xs text-center text-black/50 ">or register with email</Link>
+                <p to="" className="text-xs text-center text-black/50 ">or register with email</p>
                 <span className="border-b border-black/10 w-1/5 md:w-1/3"></span>
             </div>
             <form onSubmit={handleRegister}>

@@ -23,7 +23,6 @@ const Navbar = () => {
     const dashboardLink = `/dashboard/${!isAdmin ? 'edit' : 'admin/admin-dashboard'}`;
 
     const handleLogin = () => {
-        console.log('handleLogin called, user: ', user);
         if (!user) {
             setIsMobileMenuOpen(false);
             return navigate('/login');
