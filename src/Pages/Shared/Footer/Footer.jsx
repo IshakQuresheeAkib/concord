@@ -1,4 +1,4 @@
-import concord from '../../../assets/Concord.webp'
+import concord from '../../../assets/logo.webp'
 import { SendOutlined } from '@ant-design/icons';
 import PrimaryBtn from '../../../Components/Button/PrimaryBtn';
 import { Link } from 'react-router-dom';
