@@ -6,6 +6,9 @@ export default {
   ],
   theme: {
     extend: {
+      screens: {
+        'xs': '350px',
+      },
       colors: {
         'light-teal':'#00C4C4',
         'white':'#ffffff',
