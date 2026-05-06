@@ -11,7 +11,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <AuthProvider>
       <ParallaxProvider>
-        <Suspense fallback={<Loader />}>
+        <Suspense fallback={<Loader width='52' height='h-screen'/>}>
           <RouterProvider router={router} />
         </Suspense>
       </ParallaxProvider>

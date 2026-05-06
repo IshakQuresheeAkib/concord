@@ -61,12 +61,12 @@ const Biodatas = () => {
         <div className="font-Nunito min-h-screen selection:bg-teal selection:text-white">
             
             {/* Cinematic Hero Section */}
-            <div className="relative w-full h-[30vh] lg:h-[70vh] overflow-hidden bg-black flex items-center justify-center">
+            <div className="relative w-full h-96 lg:h-[70vh] overflow-hidden bg-black flex items-center justify-center">
                 <div className="absolute top-0 left-0 w-full z-50">
                     <Navbar />
                 </div>
                 <div className="absolute inset-0 w-full h-full bg-fixed bg-cover bg-center" style={{ backgroundImage: "url('https://i.ibb.co.com/60h84M9Q/biodatas-banner.webp')" }}>
-                    <div className="absolute inset-0 bg-gradient-to-t from-teal/50 via-teal-50 to-transparent z-10 mix-blend-multiply" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-teal/30 via-white to-transparent z-10 mix-blend-multiply" />
                 </div>
                 
                 <motion.div 
@@ -78,14 +78,14 @@ const Biodatas = () => {
                     <h1 className="text-5xl md:text-7xl font-extrabold text-black drop-shadow-2xl tracking-tighter mb-4">
                         Discover <span className="text-coral italic">Connections</span>
                     </h1>
-                    <p className="text-lg md:text-2xl text-black">
+                    <p className="xs:text-s sm:text-lg 2xl:text-2xl text-black">
                         Explore the beauty of relationships as you navigate through our curated space.
                     </p>
                 </motion.div>
             </div>
 
             {/* Main Content Layout */}
-            <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20 flex flex-col lg:flex-row lg:gap-8 relative z-30 lg:-mt-52">
+            <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20 flex flex-col lg:flex-row lg:gap-8 relative z-30 lg:-mt-36">
                 
                 {/* Modernized Interactive Filter Sidebar */}
                 <BiodataFilterSidebar 
@@ -99,20 +99,15 @@ const Biodatas = () => {
 
                 {/* Profiles Grid Area */}
                 <main className="flex-1 min-h-[50vh]">
-                    {isPending ? (
-                        <div className="w-full h-full flex items-center justify-center py-20">
-                            <motion.div animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 2, ease: "linear" }}>
-                                <Loader width='80' />
-                            </motion.div>
-                        </div>
-                    ) : biodatas?.data?.length > 0 ? (
+                    {isPending ? <Loader width='80' /> : 
+                    biodatas?.data?.length > 0 ? (
                         <motion.div 
                             key={`${type}-${location}-${minAge}-${maxAge}`}
                             variants={containerVariants}
                             initial="hidden"
                             whileInView="show"
                             viewport={{ once: true, margin: "-50px" }}
-                            className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8 auto-rows-max -mt-10 lg:-mt-6"
+                            className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3 lg:gap-8 auto-rows-max -mt-10 lg:-mt-6"
                         >
                             {biodatas.data.map((biodata, index) => (
                                 <motion.div 
