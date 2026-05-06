@@ -2,7 +2,7 @@ import { Button } from "antd";
 
 const PrimaryBtn = ({data,icon,htmlType,onClick}) => {
     return (
-      <div className="group relative overflow-hidden bg-light-teal inline-flex items-center  text-black justify-center cursor-pointer rounded-3xl py-1.5 px-2.5">
+      <div className="group relative overflow-hidden bg-coral inline-flex items-center  text-black justify-center cursor-pointer rounded-3xl py-1.5 px-2.5">
       <Button htmlType={htmlType} type="dark" className=" rounded-3xl font-medium text-white border-none " icon={icon} onClick={onClick}>
         {data}
       </Button>
