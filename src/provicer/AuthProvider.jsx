@@ -51,19 +51,21 @@ const AuthProvider = ({children}) => {
         return signInWithPopup(auth,googleProvider)
     }
 
+    const backendUrl = import.meta.env.VITE_API_BASE_URL
+
     useEffect(()=>{
         const unSubscribe = onAuthStateChanged(auth,currentUser=>{
             const userEmail = currentUser?.email ||  user?.email;
             const loggedUser = {email:userEmail}
             setUser(currentUser)
             if (currentUser) {
-                axios.post('https://concord-server.vercel.app/jwt',loggedUser,{ withCredentials:true })
+                axios.post(`${backendUrl}/jwt`,loggedUser,{ withCredentials:true })
                 .then(()=>{
                     setLoading(false)
                 })
             }
             else{
-                axios.post('https://concord-server.vercel.app/logout',loggedUser,{withCredentials:true})
+                axios.post(`${backendUrl}/logout`,loggedUser,{withCredentials:true})
                 .then(()=>{
                     setLoading(false)
                 })
