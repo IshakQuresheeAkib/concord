@@ -1,7 +1,7 @@
 import { Link, NavLink } from "react-router-dom";
 import { LogoutOutlined, AppstoreOutlined, LoginOutlined } from "@ant-design/icons";
 import { useState } from "react";
-import Loader from '../../../Components/Loader/Loader';
+import UserDropdownSkeleton from "./UserDropdownSkeleton";
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import bottomArrowUrl from '../../../assets/bottom-arrow.lottie?url';
 import { motion, AnimatePresence } from "framer-motion";
@@ -11,7 +11,7 @@ const UserDropdown = ({ user, loading, handleLogin, dashboardLink }) => {
     const [desktopMenuOpen, setDesktopMenuOpen] = useState(false);
 
     if (loading) {
-        return <div className="w-24 h-16 flex items-center justify-center"><Loader width='28' height='true' /></div>;
+        return <UserDropdownSkeleton />;
     }
 
     return (            
