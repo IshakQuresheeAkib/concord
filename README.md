@@ -1,4 +1,4 @@
-# 💖 [Concord](https://assignment-12-847d7.web.app "Concord Client side")
+# 💍[Concord](https://assignment-12-847d7.web.app "Concord Client side")
 
 <p align="center">
 	<img src="https://img.shields.io/badge/React-Client-61DAFB?style=for-the-badge&logo=react&logoColor=white" alt="React" />
